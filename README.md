@@ -27,4 +27,8 @@ Ova skripta preimenuje datoteke na način napisan u uvodu i pretvara ih u .pdf, 
 Ova skripta preimenuje datoteke na način napisan u uvodu i pretvara ih u .docx, ukoliko su datoteke u .pdf formatu.
 
 5. "Samo preimenovanje.py"
-Ova skripta samo preimenuje sve datoteke koje imaju ekstenziju .xlsx, .xls, .docx, .doc, .dotd, .pdf, .zip, na prethodno spomenuti način.
+Ova skripta samo preimenuje sve datoteke koje imaju ekstenziju: .xlsx, .xls, .docx, .doc, .dotd, .pdf, .zip, na prethodno spomenuti način.
+
+6. "Brisanje downloadsa.py"
+
+Ova skripta briše sve datoteke koje se nalaze u downlads folder a imaju ekstenziju: .xlsx, .xls, .docx, .doc, .dotd, .pdf, .zip. 
