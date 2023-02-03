@@ -5,6 +5,7 @@ import shutil
 
 downloads = str(Path.home() / "Downloads")
 imgFile = str(Path.home() / "Downloads/Novi album")
+
 if imgFile is True:
     shutil.rmtree(imgFile)
 os.mkdir(imgFile)

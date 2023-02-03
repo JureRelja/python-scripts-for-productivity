@@ -6,13 +6,31 @@ import subprocess
 downloads = "C:\\Users\jurer\Downloads"
 txtFile = open(r"C:\Users\jurer\Desktop\NOVA OBJAVA.txt","w+")
 filename = ""
+word = win32com.client.Dispatch('Word.Application')
 
 
 for every_file in os.listdir(downloads):
 
     filename = os.path.splitext(every_file)[0]
+
+    if every_file.endswith(".doc") or every_file.endswith(".odt") or every_file.endswith(".rtf") or every_file.endswith(".csv"):
+            
+        doc = word.Documents.Open(os.path.join(downloads, every_file))
+        pdfname = filename + ".docx"
+        doc.SaveAs(os.path.join(downloads, pdfname), FileFormat=17)
+        doc.Close()
+        
+        os.remove(os.path.join(downloads, every_file))   
+
+
+for every_file in os.listdir(downloads):
+
+    filename = os.path.splitext(every_file)[0]
+
+
     
-    if every_file.endswith(".xlsx") or every_file.endswith(".rar") or every_file.endswith(".xls") or every_file.endswith(".csv") or every_file.endswith(".docx") or every_file.endswith(".pdf") or every_file.endswith(".doc") or every_file.endswith(".ods") or every_file.endswith(".odt") or every_file.endswith(".rtf"):
+    if every_file.endswith(".xlsx") or every_file.endswith(".csv") or every_file.endswith(".docx") or every_file.endswith(".pdf") or every_file.endswith(".doc") or every_file.endswith(".ods") or every_file.endswith(".odt") or every_file.endswith(".rtf"):
+
 
         ext = os.path.splitext(every_file)[1]
 
@@ -57,3 +75,11 @@ for every_file in os.listdir(downloads):
 txtFile.close()
 
 subprocess.call(['cmd.exe', '/c', r'C:\Users\jurer\Desktop\NOVA OBJAVA.txt'])
+subprocess.call(["taskkill","/F","/IM","notepad.exe"])
+
+# Deleting all files in downloads folder
+for every_file in os.listdir(downloads):
+    if every_file.endswith(".xlsx") or every_file.endswith(".xls") or every_file.endswith(".docx") or every_file.endswith(".pdf") or every_file.endswith(".doc") or every_file.endswith(".ods"):
+        os.remove(os.path.join(downloads, every_file))
+        
+word.Quit()
