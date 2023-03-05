@@ -7,22 +7,18 @@ from pathlib import Path
 downloads = str(Path.home() / "Downloads")
 txtFile = open(downloads + "\Objava.txt","w+", encoding=("utf-8"))
 filename = ""
-word = win32com.client.Dispatch('Word.Application')
-
-broj_datoteke = 1
 
 os.chdir(downloads)
 files = filter(os.path.isfile, os.listdir(downloads))
-files = os.listdir(downloads) 
+files = os.listdir(downloads) # add path to each file
 files.sort(key=lambda x: os.path.getmtime(os.path.join(downloads, x)))
-
 
 files.remove("desktop.ini")
 if ("Objava.txt") in files:
     files.remove("Objava.txt")
 
-index = 0
-tempIndex = 0
+
+broj_datoteke = 1
 
 naslov_clanka = input("Unesi naslov članka: ")
 txtFile.write("NASLOV CLANKA: " + naslov_clanka + "\n"*3)
@@ -34,48 +30,12 @@ txtFile.write("<tr>\n")
 txtFile.write("<td class=" + '"' + "privitak_td_dokumenti_za_preuzimanje" + '"' + " " + "colspan=" + '"' + str("4") + '"' + ">" + "DOKUMENTI ZA PREUZIMANJE" + "</td>\n")
 txtFile.write("</tr>\n")
 
-for every_file in files:
-    filename = os.path.splitext(every_file)[0]
-
-    if every_file.endswith(".xlsx") or every_file.endswith(".zip") or every_file.endswith(".rar") or every_file.endswith(".xls") or every_file.endswith(".csv") or every_file.endswith(".docx") or every_file.endswith(".pdf") or every_file.endswith(".doc") or every_file.endswith(".ods") or every_file.endswith(".odt") or every_file.endswith(".rtf"):
-
-        if index - tempIndex == 1:
-            tempIndex = tempIndex + 2
-            index = index + 1
-            continue
-
-        #User inputs the operation for the file
-        operation = input("Unesi naredbu za datoteku " + '"' + every_file + '"' + " o/p/d: ")
-            
-        if operation == "p" or operation == "P":
-            print("Prebacujem datoteku u PDF format...")
-            doc = word.Documents.Open(os.path.join(downloads, every_file))
-            pdfname = filename + ".pdf"
-            doc.SaveAs(os.path.join(downloads, pdfname), FileFormat=17)
-            doc.Close()
-            os.remove(os.path.join(downloads, every_file))   
-            files.remove(every_file) 
-            files.insert(index, pdfname)
-
-        elif operation == "d" or operation == "D":
-            print("Prebacujem datoteku " + '"' + every_file + '"' + " u PDF i WORD format...")
-            doc = word.Documents.Open(os.path.join(downloads, every_file))
-            pdfname = filename + ".pdf"
-            doc.SaveAs(os.path.join(downloads, pdfname), FileFormat=17)
-            doc.Close()
-            files.insert(index + 1, pdfname)
-            index = index + 1
-
-    index = index + 1
-    tempIndex = tempIndex + 1
-
 
 for every_file in files:
 
     filename = os.path.splitext(every_file)[0]
     
     if every_file.endswith(".xlsx") or every_file.endswith(".zip") or every_file.endswith(".rar") or every_file.endswith(".xls") or every_file.endswith(".csv") or every_file.endswith(".docx") or every_file.endswith(".pdf") or every_file.endswith(".doc") or every_file.endswith(".ods") or every_file.endswith(".odt") or every_file.endswith(".rtf"):
-
 
         ext = os.path.splitext(every_file)[1]
 
@@ -108,7 +68,7 @@ for every_file in files:
         
         if filename[-1] == "_":
             filename = filename[:-1]
-
+        
         rename = every_file.replace(every_file, filename + ext)
         os.rename(os.path.join(downloads, every_file), os.path.join(downloads, rename))
 
@@ -140,6 +100,7 @@ for every_file in files:
 
 txtFile.write("</tbody>\n")
 txtFile.write("</table>\n")
+
             
 txtFile.close()
 
@@ -150,5 +111,3 @@ subprocess.call(["taskkill","/F","/IM","notepad.exe"])
 for every_file in os.listdir(downloads):
     if every_file.endswith(".xlsx") or every_file.endswith(".xls") or every_file.endswith(".docx") or every_file.endswith(".pdf") or every_file.endswith(".doc") or every_file.endswith(".ods"):
         os.remove(os.path.join(downloads, every_file))
-        
-word.Quit()

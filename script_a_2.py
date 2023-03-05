@@ -53,7 +53,7 @@ for every_file in files:
         #User inputs the operation for the file
         operation = input("Unesi naredbu za datoteku " + '"' + every_file + '"' + " o/p/d: ")
             
-        if operation == "p":
+        if operation == "p" or operation == "P":
             print("Prebacujem datoteku u PDF format...")
             doc = word.Documents.Open(os.path.join(downloads, every_file))
             pdfname = filename + ".pdf"
@@ -63,7 +63,7 @@ for every_file in files:
             files.remove(every_file) 
             files.insert(index, pdfname)
 
-        elif operation == "d":
+        elif operation == "d" or operation == "D":
             print("Prebacujem datoteku " + '"' + every_file + '"' + " u PDF i WORD format...")
             doc = word.Documents.Open(os.path.join(downloads, every_file))
             pdfname = filename + ".pdf"
