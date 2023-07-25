@@ -40,8 +40,7 @@ for every_file in files:
     if every_file.endswith(".xlsx") or every_file.endswith(".zip") or every_file.endswith(".rar") or every_file.endswith(".xls") or every_file.endswith(".csv") or every_file.endswith(".docx") or every_file.endswith(".pdf") or every_file.endswith(".doc") or every_file.endswith(".ods") or every_file.endswith(".odt") or every_file.endswith(".rtf"):
 
         if index - tempIndex == 1:
-            tempIndex = tempIndex + 2
-            index = index + 1
+            tempIndex = tempIndex + 1
             continue
 
         #User inputs the operation for the file

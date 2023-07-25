@@ -30,8 +30,8 @@ location = input("Lokacija datoteka: ")
 
 sveStranice = [
   inquirer.List('tablica',
-                message="Za koju stranicu želiš napraviti tablicu?",
-                choices=['djecji-vrtic-drnis.hr', 'kalun.hr', 'vrtic-trogir.hr', 'gradski-muzej-drnis.hr', 'gradskacistoca-drnis.hr', 'ogsko.hr', 'jvp-drnis.hr', 'biskupija.hr', 'komunalno-drustvo-biskupija.hr', 'ss-ivana-mestrovica-drnis.hr', 'lag-krka.hr', 'pucko-otvoreno-uciliste-drnis.hr', 'zena-drnis.hr'],
+                message="Za koju stranicu želiš napraviti tablicu",
+                choices=['djecji-vrtic-drnis.hr', 'kalun.hr', 'vrtic-trogir.hr', 'gradski-muzej-drnis.hr', 'gradskacistoca-drnis.hr', 'ogsko.hr', 'jvp-drnis.hr', 'biskupija.hr', 'komunalno-drustvo-biskupija.hr', 'ss-ivana-mestrovica-drnis.hr', 'lag-krka.hr', 'pucko-otvoreno-uciliste-drnis.hr', 'zena-drnis.hr', 'ljekarna-drnis.hr'],
             ),
 ]
 
@@ -55,7 +55,7 @@ if odabranaStranica['tablica'] == 'djecji-vrtic-drnis.hr':
     txtFile.write("</tr>\n")
 
 # Kalun tablica
-if odabranaStranica['tablica'] == 'kalun.hr':
+elif odabranaStranica['tablica'] == 'kalun.hr':
 
     txtFile.write("<table style=" + '"' + "text-align: center; width: 100%;  color: #dd001a; margin-bottom: 30px;" + '"' + ">\n")
     txtFile.write("<tbody>\n")
@@ -68,7 +68,7 @@ if odabranaStranica['tablica'] == 'kalun.hr':
     txtFile.write("</tr>\n")
 
 # Vrtic Trogir tablica
-if odabranaStranica['tablica'] == 'vrtic-trogir.hr':
+elif odabranaStranica['tablica'] == 'vrtic-trogir.hr':
 
     txtFile.write("<table style=" + '"' + "text-align: center; width: 100%; margin-bottom: 10px;" + '"' + ">\n")
     txtFile.write("<tbody>\n")
@@ -77,7 +77,7 @@ if odabranaStranica['tablica'] == 'vrtic-trogir.hr':
     txtFile.write("</tr>\n")
 
 # Gradski muzej Drniš tablica
-if odabranaStranica['tablica'] == 'gradski-muzej-drnis.hr':
+elif odabranaStranica['tablica'] == 'gradski-muzej-drnis.hr':
 
     txtFile.write("<table style=" + '"' + "text-align: center; width: 100%; margin-bottom: 10px;" + '"' + ">\n")
     txtFile.write("<tbody>\n")
@@ -86,7 +86,7 @@ if odabranaStranica['tablica'] == 'gradski-muzej-drnis.hr':
     txtFile.write("</tr>\n")
 
 # Gradska čistoća Drniš tablica
-if odabranaStranica['tablica'] == 'gradskacistoca-drnis.hr':
+elif odabranaStranica['tablica'] == 'gradskacistoca-drnis.hr':
 
     txtFile.write("<table style=" + '"' + "text-align: center; width: 100%; margin-bottom: 10px;" + '"' + ">\n")
     txtFile.write("<tbody>\n")
@@ -95,7 +95,7 @@ if odabranaStranica['tablica'] == 'gradskacistoca-drnis.hr':
     txtFile.write("</tr>\n")
 
 # Osnovna glazbena škola Krsto Odak tablica 
-if odabranaStranica['tablica'] == 'ogsko.hr':
+elif odabranaStranica['tablica'] == 'ogsko.hr':
 
     txtFile.write("<table style=" + '"' + "text-align: center; width: 100%; margin-bottom: 10px;" + '"' + ">\n")
     txtFile.write("<tbody>\n")
@@ -105,13 +105,13 @@ if odabranaStranica['tablica'] == 'ogsko.hr':
     txtFile.write("<tr>\n")
     txtFile.write("<td style=" + '"' + "background-color: #2d7d9a; border: solid 1px #766f8e; color: #ffffff; font-weight: normal; font-size: 11px; width: 30px; margin: 0px 3px 3px 0px;" + '"' + ">" + "Br." + "</td>\n")
     txtFile.write("<td style=" + '"' + "background-color: #2d7d9a; border: solid 1px #766f8e; color: #ffffff; font-weight: normal; font-size: 11px; width: 40px;" + '"' + ">" + "Tip" + "</td>\n")
-    txtFile.write("<td style=" + '"' + "background-color: #2d7d9a; border: solid 1px #766f8e; color: #444444; font-weight: normal; font-size: 11px;" + '"' + ">" + "Opis datoteke" + "</td>\n")
-    txtFile.write("<td style=" + '"' + "background-color: #2d7d9a; border: solid 1px #766f8e; color: #444444; font-weight: normal; font-size: 11px; width: 70px;" + '"' + ">" + "Veličina" + "</td>\n")
-    txtFile.write("<td style=" + '"' + "background-color: #2d7d9a; border: solid 1px #766f8e; color: #444444; font-weight: normal; font-size: 11px; width: 70px;" + '"' + ">" + "Preuzimanje" + "</td>\n")
+    txtFile.write("<td style=" + '"' + "background-color: #2d7d9a; border: solid 1px #766f8e; color: #ffffff; font-weight: normal; font-size: 11px;" + '"' + ">" + "Opis datoteke" + "</td>\n")
+    txtFile.write("<td style=" + '"' + "background-color: #2d7d9a; border: solid 1px #766f8e; color: #ffffff; font-weight: normal; font-size: 11px; width: 70px;" + '"' + ">" + "Veličina" + "</td>\n")
+    txtFile.write("<td style=" + '"' + "background-color: #2d7d9a; border: solid 1px #766f8e; color: #ffffff; font-weight: normal; font-size: 11px; width: 70px;" + '"' + ">" + "Preuzimanje" + "</td>\n")
     txtFile.write("</tr>\n")
 
 # JVP Drniš tablica
-if odabranaStranica['tablica'] == 'jvp-drnis.hr':
+elif odabranaStranica['tablica'] == 'jvp-drnis.hr':
 
     txtFile.write("<table style=" + '"' + "text-align: center; width: 100%; margin-bottom: 10px;" + '"' + ">\n")
     txtFile.write("<tbody>\n")
@@ -120,7 +120,7 @@ if odabranaStranica['tablica'] == 'jvp-drnis.hr':
     txtFile.write("</tr>\n")
 
 # Općina Biskupija tablica
-if odabranaStranica['tablica'] == 'biskupija.hr':
+elif odabranaStranica['tablica'] == 'biskupija.hr':
 
     txtFile.write("<table style=" + '"' + "text-align: center; width: 100%; margin-bottom: 10px;" + '"' + ">\n")
     txtFile.write("<tbody>\n")
@@ -129,7 +129,7 @@ if odabranaStranica['tablica'] == 'biskupija.hr':
     txtFile.write("</tr>\n")
 
 # Komunalno Društvo Biskupija tablica
-if odabranaStranica['tablica'] == 'komunalno-drustvo-biskupija.hr':
+elif odabranaStranica['tablica'] == 'komunalno-drustvo-biskupija.hr':
 
     txtFile.write("<table style=" + '"' + "text-align: center; width: 100%; margin-bottom: 10px;" + '"' + ">\n")
     txtFile.write("<tbody>\n")
@@ -138,7 +138,7 @@ if odabranaStranica['tablica'] == 'komunalno-drustvo-biskupija.hr':
     txtFile.write("</tr>\n")
 
 # SS Ivana Meštrovića Drniš tablica 
-if odabranaStranica['tablica'] == 'ss-ivana-mestrovica-drnis.hr':
+elif odabranaStranica['tablica'] == 'ss-ivana-mestrovica-drnis.hr':
 
     txtFile.write("<table style=" + '"' + "text-align: center; width: 100%;" + '"' + ">\n")
     txtFile.write("<tbody>\n")
@@ -154,7 +154,7 @@ if odabranaStranica['tablica'] == 'ss-ivana-mestrovica-drnis.hr':
     txtFile.write("</tr>\n")
 
 # LAG Krka tablica
-if odabranaStranica['tablica'] == 'lag-krka.hr':
+elif odabranaStranica['tablica'] == 'lag-krka.hr':
 
     txtFile.write("<table style=" + '"' + "text-align: center; width: 100%; margin-bottom: 35px;" + '"' + ">\n")
     txtFile.write("<tbody>\n")
@@ -165,7 +165,7 @@ if odabranaStranica['tablica'] == 'lag-krka.hr':
     txtFile.write("</tr>\n")
 
 # Pučko otvoreno učilište tablica 
-if odabranaStranica['tablica'] == 'pucko-otvoreno-uciliste-drnis.hr':
+elif odabranaStranica['tablica'] == 'pucko-otvoreno-uciliste-drnis.hr':
 
     txtFile.write("<table style=" + '"' + "text-align: center; width: 100%;" + '"' + ">\n")
     txtFile.write("<tbody>\n")
@@ -183,7 +183,16 @@ if odabranaStranica['tablica'] == 'pucko-otvoreno-uciliste-drnis.hr':
 
 
 # Žena Drniš tablica
-if odabranaStranica['tablica'] == 'zena-drnis.hr':
+elif odabranaStranica['tablica'] == 'zena-drnis.hr':
+
+    txtFile.write("<table style=" + '"' + "text-align: center; width: 100%; margin-bottom: 10px;" + '"' + ">\n")
+    txtFile.write("<tbody>\n")
+    txtFile.write("<tr>\n")
+    txtFile.write("<td style=" + '"' + "text-align: left; color: #444; font-weight: bold; font-size: 12px;" + '"' + " " + "colspan=" + '"' + ("4") + '"' + ">" + "DOKUMENTI ZA PREUZIMANJE:" + "</td>\n")
+    txtFile.write("</tr>\n")
+
+# Ljekarna Drniš tablica
+elif odabranaStranica['tablica'] == 'ljekarna-drnis.hr':
 
     txtFile.write("<table style=" + '"' + "text-align: center; width: 100%; margin-bottom: 10px;" + '"' + ">\n")
     txtFile.write("<tbody>\n")
@@ -197,8 +206,7 @@ for every_file in files:
     if every_file.endswith(".xlsx") or every_file.endswith(".zip") or every_file.endswith(".rar") or every_file.endswith(".xls") or every_file.endswith(".csv") or every_file.endswith(".docx") or every_file.endswith(".pdf") or every_file.endswith(".doc") or every_file.endswith(".ods") or every_file.endswith(".odt") or every_file.endswith(".rtf"):
 
         if index - tempIndex == 1:
-            tempIndex = tempIndex + 2
-            index = index + 1
+            tempIndex = tempIndex + 1
             continue
 
         #User inputs the operation for the file
@@ -307,7 +315,7 @@ for every_file in files:
             txtFile.write("</tr>\n")
 
          #Kalun tablica
-        if odabranaStranica["tablica"] == "kalun.hr":
+        elif odabranaStranica["tablica"] == "kalun.hr":
             if ext == ".rar" or ext == ".zip":
                 ekstenzija = "images/06_DOCUMENT_ICONS/rar.png"
             elif ext == ".pdf":
@@ -329,7 +337,7 @@ for every_file in files:
             txtFile.write("</tr>\n")
 
         # Vrtic Trogir tablica
-        if odabranaStranica["tablica"] == "vrtic-trogir.hr":
+        elif odabranaStranica["tablica"] == "vrtic-trogir.hr":
             ext_upper = ext.upper()[1:]
 
             naslov_dokumenta = input("Unesi naslov dokumenta " + '"' + name_of_the_file + '": ')
@@ -343,7 +351,7 @@ for every_file in files:
             txtFile.write("</tr>\n")
 
         # Gradski muzej Drniš tablica
-        if odabranaStranica["tablica"] == "gradski-muzej-drnis.hr":
+        elif odabranaStranica["tablica"] == "gradski-muzej-drnis.hr":
             ext_upper = ext.upper()[1:]
 
             naslov_dokumenta = input("Unesi naslov dokumenta " + '"' + name_of_the_file + '": ')
@@ -357,7 +365,7 @@ for every_file in files:
             txtFile.write("</tr>\n")
 
          # Gradska čistoća Drniš tablica
-        if odabranaStranica["tablica"] == "gradskacistoca-drnis.hr":
+        elif odabranaStranica["tablica"] == "gradskacistoca-drnis.hr":
             ext_upper = ext.upper()[1:]
 
             naslov_dokumenta = input("Unesi naslov dokumenta " + '"' + name_of_the_file + '": ')
@@ -371,7 +379,7 @@ for every_file in files:
             txtFile.write("</tr>\n")
 
         # Osnovna glazbena škola Krsto Odak tablica
-        if odabranaStranica["tablica"] == "ogsko.hr":
+        elif odabranaStranica["tablica"] == "ogsko.hr":
             if ext == ".rar" or ext == ".zip":
                 ekstenzija = "images/01_SLIKE/03_DOCUMENT_ICONS/rar.png"
             elif ext == ".pdf":
@@ -382,7 +390,7 @@ for every_file in files:
                 ekstenzija = "images/01_SLIKE/03_DOCUMENT_ICONS/doc.png"
 
             naslov_dokumenta = input("Unesi naslov dokumenta " + '"' + name_of_the_file + '": ')
-            privitak_poveznica = "<td style=" + '"' + "text-align: center; background-color: #ffffff; border: solid 1px #dddddd; color: #666666;" + '"' + "><a style=" + '"' + "font-size: 14px; font-weight: bold;" + '"' + " href=" + '"' + (location + "/" + name_of_the_file) + '"'  + " target=" + '"' + "_blank" + '"' + ">" + "<img src=" + '"' + "images/05_DOCUMENT_ICONS/download.png" + '"' +  " alt=" + '"' + "/></a></td>\n"
+            privitak_poveznica = "<td style=" + '"' + "text-align: center; background-color: #ffffff; border: solid 1px #dddddd; color: #666666;" + '"' + "><a style=" + '"' + "font-size: 14px; font-weight: bold;" + '"' + " href=" + '"' + (location + "/" + name_of_the_file) + '"'  + " target=" + '"' + "_blank" + '"' + ">" + "<img src=" + '"' + "images/01_SLIKE/03_DOCUMENT_ICONS/download.png" + '"' +  " alt=" + '"' + "/></a></td>\n"
 
             txtFile.write("<tr>\n")
             txtFile.write("<td style=" + '"' + "text-align: center; border: solid 1px #dddddd; background-color: #ffffff; color: #666666;" + '"' + ">" + str(broj_datoteke) + "." + "</td>\n")
@@ -393,7 +401,7 @@ for every_file in files:
             txtFile.write("</tr>\n")
 
         # JVP Drniš tablica
-        if odabranaStranica["tablica"] == "jvp-drnis.hr":
+        elif odabranaStranica["tablica"] == "jvp-drnis.hr":
             if ext == ".rar" or ext == ".zip":
                 ekstenzija = "images/01_slike/04_document_icons/rar.png"
             elif ext == ".pdf":
@@ -414,7 +422,7 @@ for every_file in files:
             txtFile.write("</tr>\n")
 
          # Općina Biskupija tablica
-        if odabranaStranica["tablica"] == "biskupija.hr":
+        elif odabranaStranica["tablica"] == "biskupija.hr":
             ext_upper = ext.upper()[1:]
 
             naslov_dokumenta = input("Unesi naslov dokumenta " + '"' + name_of_the_file + '": ')
@@ -428,7 +436,7 @@ for every_file in files:
             txtFile.write("</tr>\n")
 
          # Komunalno društvo Biskupija tablica
-        if odabranaStranica["tablica"] == "komunalno-drustvo-biskupija.hr":
+        elif odabranaStranica["tablica"] == "komunalno-drustvo-biskupija.hr":
             ext_upper = ext.upper()[1:]
 
             naslov_dokumenta = input("Unesi naslov dokumenta " + '"' + name_of_the_file + '": ')
@@ -442,7 +450,7 @@ for every_file in files:
             txtFile.write("</tr>\n")
 
         # SS Ivana Meštrovića Drniš tablica
-        if odabranaStranica["tablica"] == "ss-ivana-mestrovica-drnis.hr":
+        elif odabranaStranica["tablica"] == "ss-ivana-mestrovica-drnis.hr":
             if ext == ".rar" or ext == ".zip":
                 ekstenzija = "images/04_DOCUMENT_ICONS/rar.png"
             elif ext == ".pdf":
@@ -464,7 +472,7 @@ for every_file in files:
             txtFile.write("</tr>\n")
 
         # LAG Krka tablica
-        if odabranaStranica["tablica"] == "lag-krka.hr":
+        elif odabranaStranica["tablica"] == "lag-krka.hr":
             ext_upper = ext.upper()[1:]
 
             naslov_dokumenta = input("Unesi naslov dokumenta " + '"' + name_of_the_file + '": ')
@@ -478,7 +486,7 @@ for every_file in files:
             txtFile.write("</tr>\n")
 
         # SS Ivana Meštrovića Drniš tablica
-        if odabranaStranica["tablica"] == "pucko-otvoreno-uciliste-drnis.hr":
+        elif odabranaStranica["tablica"] == "pucko-otvoreno-uciliste-drnis.hr":
             if ext == ".rar" or ext == ".zip":
                 ekstenzija = "images/06_DOCUMENT_ICONS/rar.png"
             elif ext == ".pdf":
@@ -501,11 +509,25 @@ for every_file in files:
             txtFile.write("</tr>\n")
 
         # Žena Drniš tablica
-        if odabranaStranica["tablica"] == "zena-drnis.hr":
+        elif odabranaStranica["tablica"] == "zena-drnis.hr":
             ext_upper = ext.upper()[1:]
 
             naslov_dokumenta = input("Unesi naslov dokumenta " + '"' + name_of_the_file + '": ')
             privitak_poveznica = "<a style=" + '"' + "color: #e77918; text-decoration: none;" + '"' + " href=" + '"' + (location + "/" + name_of_the_file) + '"'  + " target=" + '"' + "_blank" + '"' + "rel=" + '"' + "noopener noreferrer" + '"' + '"' + ">"
+
+            txtFile.write("<tr>\n")
+            txtFile.write("<td style=" + '"' + "text-align: center; border: solid 1px #dddddd; background-color: #ffffff; color: #000; width: 40px;" + '"' + ">" + str(broj_datoteke) + "." + "</td>\n")
+            txtFile.write("<td style=" + '"' + "text-align: left; padding: 3px 5px 3px 5px; border: solid 1px #dddddd; background-color: #ffffff; color: #666666;" + '"' + ">" + privitak_poveznica + naslov_dokumenta + "</a></td>\n")
+            txtFile.write("<td style=" + '"' + "text-align: center; background-color: #ffffff; border: solid 1px #dddddd; color: #666666; width: 80px;" + '"' + ">" + velicina + "</td>\n")
+            txtFile.write("<td style=" + '"' + "text-align: center; border: solid 1px #dddddd; background-color: #ffffff; color: #666666; width: 50px; vertical-align: middle;" + '"' + ">" + ext_upper + "</td>\n")
+            txtFile.write("</tr>\n")
+
+        # Ljekarna Drniš tablica
+        elif odabranaStranica["tablica"] == "ljekarna-drnis.hr":
+            ext_upper = ext.upper()[1:]
+
+            naslov_dokumenta = input("Unesi naslov dokumenta " + '"' + name_of_the_file + '": ')
+            privitak_poveznica = "<a style=" + '"' + "color: #02813e; text-decoration: none;" + '"' + " href=" + '"' + (location + "/" + name_of_the_file) + '"'  + " target=" + '"' + "_blank" + '"' + "rel=" + '"' + "noopener noreferrer" + '"' + '"' + ">"
 
             txtFile.write("<tr>\n")
             txtFile.write("<td style=" + '"' + "text-align: center; border: solid 1px #dddddd; background-color: #ffffff; color: #000; width: 40px;" + '"' + ">" + str(broj_datoteke) + "." + "</td>\n")
