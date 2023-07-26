@@ -74,8 +74,6 @@ for every_file in files:
     index = index + 1
     tempIndex = tempIndex + 1
 
-
-
 for every_file in files:
 
     filename = os.path.splitext(every_file)[0]

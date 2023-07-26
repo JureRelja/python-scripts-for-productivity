@@ -1,6 +1,5 @@
 from selenium.webdriver.common.by import By
 from time import sleep
-import datetime
 from selenium.common.exceptions import NoSuchElementException
 
 from clickAndNavigate import waitToClick

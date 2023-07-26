@@ -5,6 +5,7 @@ import shutil
 
 #Function for resizing images
 def resize(downloads, imgFile):
+
     if os.path.isdir(imgFile) is True:
         shutil.rmtree(imgFile) #Deletes the folder if it exists
 
@@ -27,4 +28,5 @@ def resize(downloads, imgFile):
             img.thumbnail((1000, 1000))
             img.save(img_destination_name)
             b = b + 1
+
     return b;

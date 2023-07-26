@@ -7,7 +7,7 @@ from clickAndNavigate import waitToClick
 from clickAndNavigate import scrollAndClick
 from clickAndNavigate import click
 
-def createPost(browser, category, folder, postTitle, widgetID, imagesExist, websiteGen, imageFloat, imageFloatDefault, date):
+def createPost(browser, category, folder, postTitle, widgetID, imagesExist, websiteGen, tempFile, filesExist, imageFloat, imageFloatDefault, date):
     #Navigate to the new post page
     navigationElement = browser.find_element(By.LINK_TEXT, 'Content')
     navigationElement.click()
@@ -47,6 +47,18 @@ def createPost(browser, category, folder, postTitle, widgetID, imagesExist, webs
         contentInput.send_keys(widgetID) #Entering the content
 
         browser.switch_to.default_content() #Switching back to the default content
+
+    #Entering the table if it exists
+    if (filesExist):
+        toggleBtn = browser.find_element(By.CLASS_NAME, "toggle-editor").find_element(By.XPATH, "*") #Clicking on the "Toggle editor" button
+        browser.execute_script("arguments[0].scrollIntoView();", toggleBtn)
+        click(toggleBtn)
+
+        contentInput = browser.find_element(By.ID, "jform_articletext") #Finding the content input
+
+        browser.execute_script("arguments[0].scrollIntoView();", contentInput)
+
+        contentInput.send_keys(tempFile.read()) #Entering the content
 
 #Funciton for selecting an image
 def selectImg (browser, category, folder, imageOrder, imageFloat, imageFloatDefault, year):
