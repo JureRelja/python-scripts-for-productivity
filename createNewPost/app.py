@@ -31,7 +31,7 @@ for file in files:
     if (file.endswith(".jpg") or file.endswith(".png") or file.endswith(".jpeg")) or file == "Album" or file == "desktop.ini": 
         files.remove(file)
 
-tempFile = tempfile.TemporaryFile(mode='w+t')
+tempFile = tempfile.TemporaryFile(mode='w+t', encoding="utf-8")
 
 #Setting up the webdriver
 service = Service("../cromedriver/chromedriver.exe")
