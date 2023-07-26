@@ -4,7 +4,6 @@ import shutil
 def deleteFiles(downloads):
     # Deleting all files in downloads folder
     for every_file in os.listdir(downloads):
-        print(every_file)
 
         #Deleting all files in downloads folder
         if every_file.endswith(".xlsx") or every_file.endswith(".xls") or every_file.endswith(".docx") or every_file.endswith(".pdf") or every_file.endswith(".doc") or every_file.endswith(".ods"):

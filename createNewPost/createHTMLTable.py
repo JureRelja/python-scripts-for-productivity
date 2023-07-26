@@ -190,10 +190,6 @@ def createHTMLTable(files, date, tempFile, selectedWebsite, downloads, categoryN
 
     filesLocation = "images/" + categoryName + "/" + str(year) + "/" + folder # Location of the files
 
-    files.remove("desktop.ini")
-    if ("Objava.txt") in files:
-        files.remove("Objava.txt")
-
     index = 0
     tempIndex = 0
 

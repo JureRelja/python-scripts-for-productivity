@@ -28,7 +28,7 @@ files = os.listdir(downloads)
 files.sort(key=lambda x: os.path.getmtime(os.path.join(downloads, x)))
 
 for file in files:
-    if (file.endswith(".jpg") or file.endswith(".png") or file.endswith(".jpeg")) or file == "Album": 
+    if (file.endswith(".jpg") or file.endswith(".png") or file.endswith(".jpeg")) or file == "Album" or file == "desktop.ini": 
         files.remove(file)
 
 tempFile = tempfile.TemporaryFile(mode='w+t')
