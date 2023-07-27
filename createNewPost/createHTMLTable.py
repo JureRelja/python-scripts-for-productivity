@@ -188,7 +188,7 @@ def createHTMLTable(files, date, tempFile, selectedWebsite, downloads, categoryN
         tempFile.writelines("<td style=" + '"' + "text-align: left; color: #444; font-weight: bold; font-size: 12px;" + '"' + " " + "colspan=" + '"' + ("4") + '"' + ">" + "DOKUMENTI ZA PREUZIMANJE:" + "</td>\n")
         tempFile.writelines("</tr>\n")
 
-    filesLocation = "images/" + categoryName + "/" + str(year) + "/" + folder # Location of the files
+    
 
     index = 0
     tempIndex = 0
@@ -237,7 +237,7 @@ def createHTMLTable(files, date, tempFile, selectedWebsite, downloads, categoryN
 
             ext = os.path.splitext(every_file)[1]
 
-            rename(filename) #Renaming the file
+            filename = rename(filename) #Renaming the file
 
             filename = filename[0].upper() + filename[1:]
             
@@ -256,10 +256,32 @@ def createHTMLTable(files, date, tempFile, selectedWebsite, downloads, categoryN
             else:  
                 velicina = str(math.trunc(kb_size)) + " KB"
 
+            
 
             name_of_the_file =  filename + ext #Name of the file
 
-            naslov_dokumenta = input("Unesi naslov dokumenta " + '"' + name_of_the_file + '": ') #Asking the user for the name of the file
+            index = files.index(every_file)
+
+            files.remove(every_file)
+
+            files.insert(index, name_of_the_file)
+
+            naslov_dokumenta = "" #Asking the user for the name of the file
+
+            uppercased_filename = filename.upper()
+
+            if uppercased_filename == "POZIV_NA_DOSTAVU_PONUDA":
+                naslov_dokumenta = "POZIV NA DOSTAVU PONUDA"
+            elif uppercased_filename == "TROSKOVNIK":
+                naslov_dokumenta = "TROŠKOVNIK"
+            elif uppercased_filename == "PONUDBENI_LIST":
+                naslov_dokumenta = "PONUDBENI LIST"
+            elif uppercased_filename == "ODLUKA_O_ODABIRU":
+                naslov_dokumenta = "ODLUKA O ODABIRU"
+            else:
+                naslov_dokumenta = input("Unesi naslov dokumenta " + '"' + name_of_the_file + '": ')
+
+            filesLocation = "images/" + categoryName + "/" + str(year) + "/" + folder  + "/" + name_of_the_file # Location of the files
 
             #Writing the main body of the table
 

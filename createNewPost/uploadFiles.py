@@ -5,7 +5,7 @@ from clickAndNavigate import click
 
 def uploadFiles(browser, files, websiteGen, downloads):
     filesExist = False
-
+    print(files)
     logo = browser.find_element(By.CLASS_NAME, "logo") #Getting the logo for scrolling purposes
 
     if (len(files) == 0): #Checking if there are any files to upload
