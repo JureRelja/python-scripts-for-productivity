@@ -7,7 +7,7 @@ def selectWebsite():
     allWebsites = [
     inquirer.List('url',
                     message="Za koju stranicu želiš napraviti tablicu",
-                    choices=['drnis.hr', 'djecji-vrtic-drnis.hr',  'ss-ivana-mestrovica-drnis.hr', 'ogsko.hr', 'zena-drnis.hr', 'vrtic-trogir.hr', 'djecji-vrtic-marina.hr', 'pucko-otvoreno-uciliste-drnis.hr', 'promina.hr', "eko-promina.hr", 'gmd.hr', 'biskupija.hr', "nkdosk.hr", 'kalun.hr', 'gradskacistoca-drnis.hr',  'jvp-drnis.hr',  'komunalno-drustvo-biskupija.hr',  'lag-krka.hr', 'ljekarna-drnis.hr'],
+                    choices=['drnis.hr', 'djecji-vrtic-drnis.hr',  'ss-ivana-mestrovica-drnis.hr', 'ogsko.hr', 'zena-drnis.hr', 'vrtic-trogir.hr', 'djecji-vrtic-marina.hr', 'pucko-otvoreno-uciliste-drnis.hr', 'promina.hr', 'dv-seget.hr', "eko-promina.hr", 'narodna-knjiznica-drnis.hr', 'gmd.hr', 'biskupija.hr', 'ligaprotivrakadrnis.hr', "nkdosk.hr", 'kalun.hr', 'gradskacistoca-drnis.hr',  'jvp-drnis.hr',  'komunalno-drustvo-biskupija.hr',  'lag-krka.hr', 'silvijasunara.com', 'ljekarna-drnis.hr'],
                 ),
     ]
 

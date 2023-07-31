@@ -1,10 +1,3 @@
-import os
-import math
-import win32com.client
-
-from rename import rename #Importing the function from rename.py
-
-
 def createHTMLTable(files, year, folder, tempFile, selectedWebsite, categoryName):
     tableExist = False
 
