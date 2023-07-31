@@ -14,7 +14,7 @@ def uploadFiles(browser, files, websiteGen, downloads):
     filePaths = []
 
     for file in files:
-        filePaths.append(downloads + '\\' + file)
+        filePaths.append(downloads + '\\' + file["fileName"])
 
     print(filePaths)
 

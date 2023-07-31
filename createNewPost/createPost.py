@@ -7,7 +7,7 @@ from clickAndNavigate import waitToClick
 from clickAndNavigate import scrollAndClick
 from clickAndNavigate import click
 
-def createPost(browser, category, folder, postTitle, widgetID, imagesExist, websiteGen, tempFile, filesExist, imageFloat, imageFloatDefault, date):
+def createPost(browser, category, folder, postTitle, widgetID, imagesExist, websiteGen, tempFile, tableExist, imageFloat, imageFloatDefault, date):
     #Navigate to the new post page
     navigationElement = browser.find_element(By.LINK_TEXT, 'Content')
     navigationElement.click()
@@ -49,7 +49,7 @@ def createPost(browser, category, folder, postTitle, widgetID, imagesExist, webs
         browser.switch_to.default_content() #Switching back to the default content
 
     #Entering the table if it exists
-    if (filesExist):
+    if (tableExist):
         toggleBtn = browser.find_element(By.CLASS_NAME, "toggle-editor").find_element(By.XPATH, "*") #Clicking on the "Toggle editor" button
         browser.execute_script("arguments[0].scrollIntoView();", toggleBtn)
         click(toggleBtn)

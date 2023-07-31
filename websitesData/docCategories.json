@@ -93,6 +93,109 @@
         "imageFloatDefault": "Use Global (None)"
     },
     {
+        "url": "djecji-vrtic-marina.hr",
+        "categories": [
+            "01_slike",
+            "02_novosti",
+            "03_obavijesti",
+            "04_najave",
+            "05_upisi",
+            "06_obrasci",
+            "07_galerija_slika",
+            "08_vezani_zakoni",
+            "09_akti",
+            "10_pravilnici",
+            "11_godisnja_izvjesca",
+            "12_planovi_i_programi",
+            "13_kurikulum",
+            "14_zastita_osobnih_podataka",
+            "15_planiranje_i_izvjestavanje",
+            "16_pravo_na_pristup_informacijama",
+            "17_upravno_vijece",
+            "18_natjecaji",
+            "19_javna_nabava",
+            "20_financijska_transparentnost",
+            "21_jelovnici",
+            "22_zdravlje_i_prehrana",
+            "23_pedagog"
+        ],
+        "imageFloat": "none",
+        "websiteGen": 4,
+        "imageFloatDefault": "Use Global (None)"
+    },
+    {
+        "url": "narodna-knjiznica-drnis.hr",
+        "categories": [
+            "01_slike",
+            "02_novosti",
+            "03_obavijesti",
+            "04_najave",
+            "05_dokumenti"
+        ],
+        "imageFloat": "none",
+        "websiteGen": 4,
+        "imageFloatDefault": "Use Global (None)"
+    },
+    {
+        "url": "silvijasunara.com",
+        "categories": [
+            "01_SLIKE",
+            "02_IZLOZBE",
+            "03_NOVOSTI",
+            "04_OBAVIJESTI",
+            "05_NAJAVE"
+        ],
+        "imageFloat": "none",
+        "websiteGen": 2,
+        "imageFloatDefault": "Use Global (Right)"
+    },
+    {
+        "url": "dv-seget.hr",
+        "categories": [
+            "01_slike",
+            "02_novosti",
+            "03_obavijesti",
+            "04_najave",
+            "05_upisi",
+            "06_kutak_za_roditelje",
+            "07_zdravstveni_kutak",
+            "08_odgojno_obrazovni_kutak",
+            "09_dokumenti"
+        ],
+        "imageFloat": "none",
+        "websiteGen": 4,
+        "imageFloatDefault": "Use Global (None)"
+    },
+    {
+        "url": "eko-promina.hr",
+        "categories": [
+            "01_slike",
+            "02_novosti",
+            "03_obavijesti",
+            "04_pravo_na_pristup_informacijama",
+            "05_unutarnje_ustrojstvo",
+            "06_sponzorstva_i_donacije",
+            "07_godisnji_financijski_izvjestaji",
+            "08_groblja",
+            "09_antikorupcijski_program",
+            "10_javna_nabava",
+            "11_prikupljanje_otpada",
+            "12_zastita_osobnih_podataka",
+            "13_opci_akti_i_odluke",
+            "14_savjetovanje_s_javnoscu",
+            "15_opci_obrasci",
+            "16_otvoreni_podaci",
+            "17_planovi_rada_i_financijski_planovi",
+            "18_skupstina_drustva",
+            "19_digitalna_pristupacnost",
+            "20_natjecaji",
+            "21_odrzavanje_javnih_i_zelenih_povrsina"
+        ],
+        "imageFloat": "none",
+        "websiteGen": 4,
+        "imageFloatDefault": "Use Global (None)"
+    },
+    {
         "url": "drnis.hr",
         "categories": [
             "01_novosti",
@@ -375,6 +478,39 @@
         "imageFloat": "none",
         "websiteGen": 4,
         "imageFloatDefault": "Use Global (None)"
+    },
+    {
+        "url": "ligaprotivrakadrnis.hr",
+        "categories": [
+            "01_SLIKE",
+            "02_NOVOSTI",
+            "03_OBAVIJESTI",
+            "04_NATJECAJI",
+            "05_JAVNI_POZIVI",
+            "06_JAVNA_NABAVA",
+            "07_OBJAVE_NACELNIKA",
+            "08_OBJAVE_OPCINSKOG_VIJECA",
+            "09_PRORACUN",
+            "10_FINANCIJSKI_IZVJESTAJI",
+            "11_PRAVO_NA_PRISTUP_INFORMACIJAMA",
+            "12_STRATESKI_RAZVOJNI_PROGRAM",
+            "13_AKTI",
+            "14_PROSTORNI_PLAN",
+            "15_URBANISTICKI_PLANOVI",
+            "16_STATUT",
+            "17_CIVILNA_ZASTITA",
+            "18_GOSPODARENJE_OTPADOM",
+            "19_ZASTITA_OSOBNIH_PODATAKA",
+            "20_POSLOVNIK",
+            "21_DIGITALNA_PRISTUPACNOST",
+            "22_SAVJETOVANJE_S_JAVNOSCU",
+            "23_OTVORENI_PODACI",
+            "24_REGISTAR_PRORACUNSKIH_KORISNIKA",
+            "25_REGISTAR_TRGOVACKIH_DRUSTAVA"
+        ],
+        "imageFloat": "left",
+        "websiteGen": 3,
+        "imageFloatDefault": "Use Global (Right)"
     },
     {
         "url": "ljekarna-drnis.hr",
