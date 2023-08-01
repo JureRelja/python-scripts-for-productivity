@@ -67,6 +67,15 @@ elif odabranaStranica['tablica'] == 'kalun.hr':
     txtFile.write("<td style=" + '"' + "background-color: #1187d1; border: solid 1px #ebebeb; color: #fff; font-weight: normal; font-size: 12px; width: 80px;" + '"' + ">" + "Preuzimanje" + "</td>\n")
     txtFile.write("</tr>\n")
 
+    #New websites table
+elif odabranaStranica['tablica'] == "drnis.hr" or odabranaStranica['tablica'] == "eko-promina.hr" or odabranaStranica['tablica'] == "djecji-vrtic-marina.hr" or odabranaStranica['tablica'] == "dv-seget.hr" or odabranaStranica['tablica'] == "nkdosk.hr" or odabranaStranica['tablica'] == "narodna-knjiznica-drnis.hr":
+    txtFile.write("<table class=" + '"' + "privitak_table" + '"' + ">\n")
+    txtFile.write("<tbody>\n")
+    if odabranaStranica['tablica'] != "djecji-vrtic-marina.hr":
+        txtFile.write("<tr>\n")
+        txtFile.write("<td class=" + '"' + "privitak_td_dokumenti_za_preuzimanje" + '"' + " " + "colspan=" + '"' + str("4") + '"' + ">" + "DOKUMENTI ZA PREUZIMANJE" + "</td>\n")
+        txtFile.write("</tr>\n")
+
 # Vrtic Trogir tablica
 elif odabranaStranica['tablica'] == 'vrtic-trogir.hr':
 
@@ -334,6 +343,18 @@ for every_file in files:
             txtFile.write("<td style=" + '"' + "text-align: left; padding: 2px 5px 2px 5px; border: solid 1px #ebebeb; background-color: #ffffff;" + '"' + ">" + naslov_dokumenta + "</td>\n")
             txtFile.write("<td style=" + '"' + "text-align: center; background-color: #ffffff; border: solid 1px #ebebeb; padding: 2px 5px 2px 5px;" + '"' + ">" + velicina + "</td>\n")
             txtFile.write(privitak_poveznica)
+            txtFile.write("</tr>\n")
+
+        #New websites table
+        elif odabranaStranica["tablica"] == "drnis.hr" or odabranaStranica["tablica"] == "eko-promina.hr" or odabranaStranica["tablica"] == "djecji-vrtic-marina.hr" or odabranaStranica["tablica"] == "dv-seget.hr" or odabranaStranica["tablica"] == "nkdosk.hr" or odabranaStranica["tablica"] == "narodna-knjiznica-drnis.hr":
+            ext_upper = every_file["ext"].upper()[1:]
+
+            privitak_poveznica = "<td class=" + '"' + "privitak_td_poveznica" + '"' + "><a class=" + '"' + "privitak_a" + '"' + " href=" + '"' + (location + "/" + name_of_the_file) + '"'  + " target=" + '"' + "_blank" + '"' + " rel=" + '"' + "noopener noreferrer" + '"' + ">" + str(every_file["fileTitle"]) +  "</a></td>\n"
+            txtFile.write("<tr>\n")
+            txtFile.write("<td class=" + '"' + "privitak_td_redni_broj" + '"' + ">" + str(broj_datoteke) + "." + "</td>\n")
+            txtFile.write(privitak_poveznica)
+            txtFile.write("<td class=" + '"' + "privitak_td_tip_dokumenta" + '"' + ">" + ext_upper + "</td>\n")
+            txtFile.write("<td class=" + '"' + "privitak_td_velicina" + '"' + ">" + velicina + "</td>\n")
             txtFile.write("</tr>\n")
 
         # Vrtic Trogir tablica

@@ -20,7 +20,7 @@ def createHTMLTable(files, year, folder, tempFile, selectedWebsite, categoryName
         tempFile.writelines("<td style=" + '"' + "background-color: #cccccc; border: solid 1px #bbbbbb; color: #444444; font-weight: normal; font-size: 11px; width: 60px;" + '"' + ">" + "Preuzimanje" + "</td>\n")
         tempFile.writelines("</tr>\n")
 
-        #Grad Drniš tablica
+        #New websites table
     elif selectedWebsite == "drnis.hr" or selectedWebsite == "eko-promina.hr" or selectedWebsite == "djecji-vrtic-marina.hr" or selectedWebsite == "dv-seget.hr" or selectedWebsite == "nkdosk.hr" or selectedWebsite == "narodna-knjiznica-drnis.hr":
         tempFile.writelines("<table class=" + '"' + "privitak_table" + '"' + ">\n")
         tempFile.writelines("<tbody>\n")
@@ -204,7 +204,7 @@ def createHTMLTable(files, year, folder, tempFile, selectedWebsite, categoryName
             tempFile.writelines(privitak_poveznica)
             tempFile.writelines("</tr>\n")
 
-        #New table
+        #New websites table
         elif selectedWebsite == "drnis.hr" or selectedWebsite == "eko-promina.hr" or selectedWebsite == "djecji-vrtic-marina.hr" or selectedWebsite == "dv-seget.hr" or selectedWebsite == "nkdosk.hr" or selectedWebsite == "narodna-knjiznica-drnis.hr":
             ext_upper = every_file["ext"].upper()[1:]
 
