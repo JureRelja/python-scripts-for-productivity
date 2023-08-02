@@ -6,7 +6,7 @@ from rename import rename #Importing the function from rename.py
 
 word = win32com.client.Dispatch('Word.Application')
 
-def manipulateFiles(files, downloads):
+def manipulateFiles(files, downloads, selectedWebsite):
 
     if (len(files) == 0):
         return
@@ -71,8 +71,9 @@ def manipulateFiles(files, downloads):
         os.rename(os.path.join(downloads, every_file), os.path.join(downloads, renamedFile))
 
         bits_size = os.path.getsize(os.path.join(downloads, renamedFile))
-        
+       
         kb_size = bits_size / 1024
+
         if kb_size > 1024:
             mb_size = round(kb_size / 1024, 1)
             velicina = str(mb_size) + " MB"
@@ -90,6 +91,7 @@ def manipulateFiles(files, downloads):
 
         uppercased_filename = filename.upper()
 
+        #Universal names
         if uppercased_filename == "POZIV_NA_DOSTAVU_PONUDA":
             naslov_dokumenta = "POZIV NA DOSTAVU PONUDA"
         elif uppercased_filename == "TROSKOVNIK":
@@ -98,10 +100,25 @@ def manipulateFiles(files, downloads):
             naslov_dokumenta = "PONUDBENI LIST"
         elif uppercased_filename == "ODLUKA_O_ODABIRU":
             naslov_dokumenta = "ODLUKA O ODABIRU"
+        elif uppercased_filename.split("_")[-1] == "POZIV":
+            naslov_dokumenta == "POZIV - DNEVNI RED"
+        elif uppercased_filename.split("_")[-1] == "ZAPISNIK":
+            naslov_dokumenta == "ZAPISNIK"
+            
+        #drnis.hr file names
+        elif uppercased_filename.split("_")[-1] == "AKTI" and selectedWebsite == "drnis.hr":
+            naslov_dokumenta == "AKTI"
+
+        #promina.hr file names
+        elif uppercased_filename.split("_")[-1] == "AKATA" and selectedWebsite == "promina.hr":
+            naslov_dokumenta == "USVOJENI AKTI"
+        elif uppercased_filename.split("_")[-1] == "AKATA" and selectedWebsite == "promina.hr":
+            naslov_dokumenta == "PRIJEDLOZI AKATA"
+        
         else:
             naslov_dokumenta = input("Unesi naslov dokumenta " + '"' + name_of_the_file + '": ')
 
-        files.insert(index, {"fileName": name_of_the_file, "fileSize": velicina, "fileLocation": "", "fileTitle": naslov_dokumenta, "fileNumber": broj_datoteke, "ext": ext})
+        files.insert(index, {"fileName": name_of_the_file, "fileSize": velicina, "kbSize": math.ceil(kb_size), "fileLocation": "", "fileTitle": naslov_dokumenta, "fileNumber": broj_datoteke, "ext": ext})
 
         broj_datoteke = broj_datoteke + 1
 

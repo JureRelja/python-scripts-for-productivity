@@ -192,7 +192,7 @@ def createFolderAndNavigate(browser, createFolderName, nagivateFolderName):
             sleep(0.1)
 
     
-    sleep(1)
+    sleep(2)
 
 
 
