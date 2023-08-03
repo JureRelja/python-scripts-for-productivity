@@ -7,6 +7,7 @@ from clickAndNavigate import click
 from rename import rename
 from clickAndNavigate import scrollAndClick
 from clickAndNavigate import waitToClick
+from rename import rename
 
 def createWidget(browser, imageNum, postTitle, folder, category, albumExists, websiteGen, date):
     if (albumExists == False):
@@ -113,7 +114,8 @@ def newWidgetGen2(browser, postTitle, folder, widgetType, category, year):
             newWidgetNameInput = browser.find_element(By.CLASS_NAME, "name") #Finding the widget name input
             newWidgetNameInput.clear() #Clearing the widget name input
 
-            newWidgetName = str(year) + "_" + folder + "_" + postTitle + "_" + widgetType #Creating the new widget namež
+            newWidgetName = str(year) + "_" + folder + "_" + postTitle + "_" + widgetType #Creating the new widget name
+            newWidgetName = rename(newWidgetName).lower() #Renaming the widget name
             newWidgetNameInput.send_keys(rename(newWidgetName).lower()) #Sending the new widget name
 
             deletePrevImages = browser.find_element(By.CLASS_NAME, "deletable") #Finding the delete previous images checkbox
@@ -173,8 +175,22 @@ def newWidgetGen2(browser, postTitle, folder, widgetType, category, year):
             browser.execute_script("arguments[0].scrollIntoView();", element) #Scrolling to the element
             browser.execute_script("window.scrollBy(0, -200)","") #Scrolling up a bit
 
+            element = browser.find_element(By.XPATH, "//button[text()='Add to Photo Gallery']") #Finding the select button
+            browser.execute_script("arguments[0].scrollIntoView();", element) #Scrolling to the element
+            browser.execute_script("window.scrollBy(0, -200)","") #Scrolling up a bit
+            click(element) #Clicking on the select button
+
             saveBtn = browser.find_element(By.CLASS_NAME, "btn-success") #Finding the save button
             browser.execute_script("arguments[0].scrollIntoView();", saveBtn) #Scrolling to the element
+
+            #Waiting for album images to load
+            for i in range(100):
+                try:
+                    element = browser.find_element(By.ID, "box") #Finding the album images
+                    break
+                except NoSuchElementException:
+                    sleep(0.1)
+
             click(saveBtn) #Clicking on the save button
 
             cancelBtn = browser.find_element(By.CLASS_NAME, "button-cancel") #Finding the cancel button

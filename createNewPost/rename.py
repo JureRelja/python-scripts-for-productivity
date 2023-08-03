@@ -24,6 +24,7 @@ def rename(file):
     file = file.replace("__", "_")
     file = file.replace("__", "_")
     file = file.replace("___", "_")
+    file = file.replace('"', "")
     file = file.replace("(", "")
     file = file.replace(")", "")
     #file = file[0].upper() + file[1:]

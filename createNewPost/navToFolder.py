@@ -181,7 +181,6 @@ def createFolderAndNavigate(browser, createFolderName, nagivateFolderName):
     browser.execute_script("arguments[0].scrollIntoView();", logo) #Scrolling to the details tag so that the create folder button is visible
 
     browser.find_element(By.XPATH, "//button[text()=' Create Folder']").click() #Clicking the create folder button
-    sleep(1)
 
     for i in range(100):
         try: 
@@ -189,9 +188,8 @@ def createFolderAndNavigate(browser, createFolderName, nagivateFolderName):
             scrollAndClick(browser, folder)
             break;
         except NoSuchElementException or ElementNotInteractableException:
-            sleep(0.1)
+            sleep(0.5)
 
-    
     sleep(2)
 
 

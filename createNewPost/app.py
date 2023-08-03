@@ -5,6 +5,7 @@ from time import sleep
 from selenium.webdriver.common.by import By
 import os
 import tempfile
+import subprocess
 
 from navToFolder import navigateToNewFolder
 from resize import resize #Importing the function from resize.py
@@ -34,12 +35,11 @@ for file in files:
 
 tempFile = tempfile.TemporaryFile(mode='w+t', encoding="utf-8")
 
-print(files)
-
 #Setting up the webdriver
 service = Service("../cromedriver/chromedriver.exe")
 options = webdriver.ChromeOptions()
 options.add_argument("--start-maximized")
+
 #options.add_argument('--headless')
 
 selectedWebsite = selectWebsite() #Selecting the website
