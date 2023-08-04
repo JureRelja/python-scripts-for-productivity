@@ -3,8 +3,10 @@ from time import sleep
 
 from clickAndNavigate import click
 
-def uploadFiles(browser, files, websiteGen, downloads):
-    filesExist = False
+def uploadFiles(browser, files, websiteGen, downloads, filesExist):
+
+    if (filesExist == False):
+        return
 
     logo = browser.find_element(By.CLASS_NAME, "logo") #Getting the logo for scrolling purposes
 
@@ -59,8 +61,4 @@ def uploadFiles(browser, files, websiteGen, downloads):
 
         click(browser.find_element(By.XPATH, "//button[text()=' Start Upload']")) #Clicking the start upload button
             
-    filesExist = True
-
     #sleep(5)
-   
-    return filesExist

@@ -278,7 +278,10 @@ def newWidgetGen4(browser, postTitle, folder, widgetType, category, year):
 
         if (widgetElement.text.endswith(widgetType)):
 
-            copyIcon = widget.find_elements(By.XPATH, "*")[-1].find_element(By.XPATH, "*") #Finding the copy icon
+            browser.execute_script("arguments[0].scrollIntoView();", widgetElement) #Scrolling to the element
+            browser.execute_script("window.scrollBy(0, -200)","") #Scrolling up a bit
+
+            copyIcon = widget.find_elements(By.XPATH, "*")[-1].find_element(By.XPATH, "*").find_element(By.XPATH, "*") #Finding the copy icon
 
             a.move_to_element(copyIcon) #Hovering over the copy icon
             a.perform() #Performing the hover action

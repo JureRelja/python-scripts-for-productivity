@@ -5,7 +5,6 @@ from time import sleep
 from selenium.webdriver.common.by import By
 import os
 import tempfile
-import subprocess
 
 from navToFolder import navigateToNewFolder
 from resize import resize #Importing the function from resize.py
@@ -29,9 +28,6 @@ files = filter(os.path.isfile, os.listdir(downloads))
 files = os.listdir(downloads) 
 files.sort(key=lambda x: os.path.getmtime(os.path.join(downloads, x)))
 
-for file in files:
-    if (file.endswith(".jpg") or file.endswith(".png") or file.endswith(".jpeg")) or file == "Album" or file == "desktop.ini": 
-        files.remove(file)
 
 tempFile = tempfile.TemporaryFile(mode='w+t', encoding="utf-8")
 
@@ -48,6 +44,15 @@ date = selectDateYear() #Getting the current month, day and year
 
 imageNum = resize(downloads, imgFile); #Resizing the images
 
+filesLenght = len(files) #Getting the number of files in the downloads folder
+i = 0
+while i < filesLenght:
+    if files[i].endswith(".jpg") or files[i].endswith(".JPG") or files[i].endswith(".png") or files[i].endswith(".PNG") or files[i].endswith(".jpeg") or files[i].endswith(".JPEG") or files[i] == "Album" or files[i] == "desktop.ini": 
+        files.pop(i)
+        i -= 1
+        filesLenght -= 1
+    i += 1
+
 filesExist = manipulateFiles(files=files, downloads=downloads, selectedWebsite=selectedWebsite[0]["url"]) #Manipulating the files
 
 browser = webdriver.Chrome(service=service, options=options) #Opening the browser
@@ -56,13 +61,13 @@ authentificate(selectedWebsite=selectedWebsite[0]["url"], browser=browser, websi
 
 folder = navigateToNewFolder(browser=browser, categoryName=selectedWebsite[1]["category"], websiteGen=selectedWebsite[4], date=date) #Navigating to the folder where the images will be uploaded
 
-filesExist = uploadFiles(browser=browser, files=files, websiteGen=selectedWebsite[4], downloads=downloads) #Uploading the files
+uploadFiles(browser=browser, files=files, filesExist=filesExist, websiteGen=selectedWebsite[4], downloads=downloads) #Uploading the files
 
 imagesExist = uploadImages(browser=browser, imgFile=imgFile, downloads=downloads, imageNum=imageNum, folder=folder[0], websiteGen=selectedWebsite[4]) #Uploading the images
 
 widgetID = createWidget(browser=browser, imageNum=imageNum, postTitle=selectedWebsite[2], folder=folder[1], category=selectedWebsite[1]["category"], albumExists=imagesExist[1], websiteGen=selectedWebsite[4], date=date) #Creating the widget
 
-tableExist = createHTMLTable(files=files, categoryName=selectedWebsite[1]["category"], year=date["year"], folder=folder[1], tempFile=tempFile, selectedWebsite=selectedWebsite[0]["url"]) #Creating the HTML table
+tableExist = createHTMLTable(files=files, categoryName=selectedWebsite[1]["category"], filesExist=filesExist, year=date["year"], folder=folder[1], tempFile=tempFile, selectedWebsite=selectedWebsite[0]["url"]) #Creating the HTML table
 tempFile.seek(0)
 
 createPost(browser=browser, category=selectedWebsite[1]["category"], folder=folder[1], postTitle=selectedWebsite[2], widgetID=widgetID, tempFile=tempFile, imagesExist=imagesExist, tableExist=tableExist, imageFloat=selectedWebsite[3], imageFloatDefault=selectedWebsite[5], websiteGen=selectedWebsite[4], date=date) #Creating the post

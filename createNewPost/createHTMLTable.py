@@ -1,5 +1,8 @@
-def createHTMLTable(files, year, folder, tempFile, selectedWebsite, categoryName):
+def createHTMLTable(files, year, folder, tempFile, selectedWebsite, categoryName, filesExist):
     tableExist = False
+
+    if filesExist == False:
+        return tableExist
 
     if (len(files) == 0):
         return
