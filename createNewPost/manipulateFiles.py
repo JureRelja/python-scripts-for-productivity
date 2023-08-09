@@ -7,9 +7,11 @@ from rename import rename #Importing the function from rename.py
 word = win32com.client.Dispatch('Word.Application')
 
 def manipulateFiles(files, downloads, selectedWebsite):
+    filesExist = False
+
 
     if (len(files) == 0):
-        return
+        return filesExist
 
     broj_datoteke = 1
 
@@ -123,3 +125,7 @@ def manipulateFiles(files, downloads, selectedWebsite):
         broj_datoteke = broj_datoteke + 1
 
     word.Quit() #Closing the Word application
+
+    filesExist = True
+
+    return filesExist

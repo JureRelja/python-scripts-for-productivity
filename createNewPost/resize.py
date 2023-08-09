@@ -21,6 +21,10 @@ def resize(downloads, imgFile):
         if (image == "1.jpg") and len(os.listdir(downloads)) == 4:
             b = 1
             return b
+        
+        if len(os.listdir(downloads)) == 4 and "naslovna.jpg" in os.listdir(downloads):
+            b = 0
+            return b
 
         if image.endswith(".jpg") or image.endswith(".JPG") or image.endswith(".png") or image.endswith(".PNG") or image.endswith(".jpeg") or image.endswith(".JPEG"):
             ime = i[b]
