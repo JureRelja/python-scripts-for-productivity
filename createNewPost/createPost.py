@@ -4,7 +4,6 @@ import datetime
 from selenium.common.exceptions import NoSuchElementException
 
 from clickAndNavigate import waitToClick
-from clickAndNavigate import scrollAndClick
 from clickAndNavigate import click
 
 def createPost(browser, category, folder, postTitle, widgetID, imagesExist, websiteGen, tempFile, tableExist, imageFloat, imageFloatDefault, date):
@@ -58,7 +57,10 @@ def createPost(browser, category, folder, postTitle, widgetID, imagesExist, webs
 
         browser.execute_script("arguments[0].scrollIntoView();", contentInput)
 
-        contentInput.send_keys(tempFile.read()) #Entering the content
+        table = tempFile.read() #Reading the table from the file
+        print(table)
+
+        contentInput.send_keys(table) #Entering the content
 
 #Funciton for selecting an image
 def selectImg (browser, category, folder, imageOrder, imageFloat, imageFloatDefault, year):

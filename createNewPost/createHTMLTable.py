@@ -3,9 +3,6 @@ def createHTMLTable(files, year, folder, tempFile, selectedWebsite, categoryName
 
     if filesExist == False:
         return tableExist
-
-    if (len(files) == 0):
-        return
     
     #Creating the header of the table
         # Djecji vrtić Drniš tablica 
@@ -443,5 +440,6 @@ def createHTMLTable(files, year, folder, tempFile, selectedWebsite, categoryName
     tempFile.writelines("</table>\n")
 
     tableExist = True
+    tempFile.seek(0)
 
     return tableExist

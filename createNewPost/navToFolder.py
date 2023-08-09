@@ -10,7 +10,7 @@ from clickAndNavigate import click
 
 adimnPath = "/administrator"
 
-def navigateToNewFolder(browser, categoryName, websiteGen, date):
+def navigateToNewFolder(browser, categoryName, subCategory, websiteGen, date):
 
     currentDateFolder = str(date["month"]).rjust(2, '0') + "_" + str(date["day"]).rjust(2, '0') #Adding leading zeros to the day and month
 
@@ -27,7 +27,13 @@ def navigateToNewFolder(browser, categoryName, websiteGen, date):
     #Navigating to the folder for gen 2 and 3 websites
     if websiteGen == 2 or websiteGen == 3 or websiteGen == 4:
 
-        yearFolder = categoryName + "-" + str(date["year"]) #ID of the <li> tag that contains the folder for the current year
+        yearFolder = "" #ID of the <li> tag that contains the folder for the current year
+
+        if subCategory != "":
+            yearFolder = categoryName + "-" + subCategory + "-" + str(date["year"]) #ID of the <li> tag that contains the folder for the current year
+        else:
+            yearFolder = categoryName + "-" + str(date["year"]) #ID of the <li> tag that contains the folder for the current year
+
         for i in range(0, 10):
             try: 
                 categoryFolder = browser.find_element(By.LINK_TEXT, categoryName) #Getting the cattegory folder
@@ -35,6 +41,15 @@ def navigateToNewFolder(browser, categoryName, websiteGen, date):
                 break;
             except NoSuchElementException:
                 sleep(0.1)
+
+        if (subCategory != ""):
+            for i in range(0, 10):
+                try: 
+                    categoryFolder = browser.find_element(By.LINK_TEXT, subCategory) #Getting the cattegory folder
+                    scrollAndClick(browser, categoryFolder)
+                    break;
+                except NoSuchElementException:
+                    sleep(0.1)
 
         try:
             liTag = browser.find_element(By.ID, yearFolder) #Checking if the current year folder exists in the category folder

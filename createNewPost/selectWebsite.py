@@ -24,9 +24,14 @@ def selectWebsite():
 
     websiteGen = ""
 
+    subSelectedCategory = []
+
     #User chooses the category
     for i in websites:
         if (i["url"] == selectedWebsite["url"]):
+            if (i["url"] == "ogsko.hr" or i["url"] == "ss-ivana-mestrovica-drnis.hr"):
+                subSelectedCategory = i["subCategory"]
+
             websiteCategories = i["categories"]
             imageFloat = i["imageFloat"]
             imageFloatDefault = i["imageFloatDefault"]
@@ -42,6 +47,18 @@ def selectWebsite():
 
     selectedCategory = inquirer.prompt(websiteCategories)
 
+    selectedSubCategory = ""
+
+    if (selectedCategory["category"] == "08_DOKUMENTI") or (selectedCategory["category"] == "06_NASTAVA"):
+        subSelectedCategory = [
+        inquirer.List('subCategory',
+                        message="Odaberi podkategoriju mape u koju želiš spremiti slike",
+                        choices=subSelectedCategory,
+                    ),
+        ]
+
+        selectedSubCategory = inquirer.prompt(subSelectedCategory)["subCategory"]
+
     postTitle = input("Unesi naslov nove objave: ")
 
-    return selectedWebsite,  selectedCategory, postTitle, imageFloat, websiteGen, imageFloatDefault
+    return selectedWebsite, selectedCategory, postTitle, imageFloat, websiteGen, imageFloatDefault, selectedSubCategory

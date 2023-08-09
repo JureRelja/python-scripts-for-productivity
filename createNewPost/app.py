@@ -28,6 +28,18 @@ files = filter(os.path.isfile, os.listdir(downloads))
 files = os.listdir(downloads) 
 files.sort(key=lambda x: os.path.getmtime(os.path.join(downloads, x)))
 
+filesForDeleting = files.copy()
+filesForDeleting.remove("desktop.ini")
+filesForDeleting.append("Album")
+
+filesLenght = len(files) #Getting the number of files in the downloads folder
+i = 0
+while i < filesLenght:
+    if filesForDeleting[i].endswith(".xlsx") or filesForDeleting[i].endswith(".zip") or filesForDeleting[i].endswith(".rar") or filesForDeleting[i].endswith(".xls") or filesForDeleting[i].endswith(".csv") or filesForDeleting[i].endswith(".docx") or filesForDeleting[i].endswith(".pdf") or filesForDeleting[i].endswith(".doc") or filesForDeleting[i].endswith(".ods") or filesForDeleting[i].endswith(".odt") or filesForDeleting[i].endswith(".rtf"): 
+        filesForDeleting.pop(i)
+        i -= 1
+        filesLenght -= 1
+    i += 1
 
 tempFile = tempfile.TemporaryFile(mode='w+t', encoding="utf-8")
 
@@ -55,11 +67,15 @@ while i < filesLenght:
 
 filesExist = manipulateFiles(files=files, downloads=downloads, selectedWebsite=selectedWebsite[0]["url"]) #Manipulating the files
 
+tempFile.read()
+for file in files:
+    filesForDeleting.append(file["fileName"])
+
 browser = webdriver.Chrome(service=service, options=options) #Opening the browser
 
 authentificate(selectedWebsite=selectedWebsite[0]["url"], browser=browser, websiteGen=selectedWebsite[4]) #Authentificating the user
 
-folder = navigateToNewFolder(browser=browser, categoryName=selectedWebsite[1]["category"], websiteGen=selectedWebsite[4], date=date) #Navigating to the folder where the images will be uploaded
+folder = navigateToNewFolder(browser=browser, categoryName=selectedWebsite[1]["category"], subCategory=selectedWebsite[6], websiteGen=selectedWebsite[4], date=date) #Navigating to the folder where the images will be uploaded
 
 uploadFiles(browser=browser, files=files, filesExist=filesExist, websiteGen=selectedWebsite[4], downloads=downloads) #Uploading the files
 
@@ -72,7 +88,7 @@ tempFile.seek(0)
 
 createPost(browser=browser, category=selectedWebsite[1]["category"], folder=folder[1], postTitle=selectedWebsite[2], widgetID=widgetID, tempFile=tempFile, imagesExist=imagesExist, tableExist=tableExist, imageFloat=selectedWebsite[3], imageFloatDefault=selectedWebsite[5], websiteGen=selectedWebsite[4], date=date) #Creating the post
 
-deleteFiles(downloads=downloads)
+deleteFiles(downloads=downloads, files=filesForDeleting) #Deleting all the files in the downloads folder
 
 tempFile.close()
 

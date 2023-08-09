@@ -273,6 +273,15 @@
             "27_DRZAVNA_MATURA",
             "28_FINANCIJSKI_PLANOVI"
         ],
+        "subCategory": [
+            "01_RASPORED_ZA_NASTAVNIKE",
+            "02_RASPORED_ZA_UCENIKE",
+            "03_VREMENICI",
+            "05_KURIKULUM",
+            "06_GODISNJI_PLAN_I_PROGRAM",
+            "07_POPIS_UDZBENIKA",
+            "08_ZAVRSNI_RAD"
+        ],
         "imageFloat": "left",
         "websiteGen": 2,
         "imageFloatDefault": "Use Global (None)"
@@ -294,6 +303,17 @@
             "12_UPISI",
             "13_FINANCIJSKI_PLANOVI",
             "14_DO_RE_MI_FA_DRNIS"
+        ],
+        "subCategory": [
+            "01_FINANCIJSKI_IZVJESTAJI",
+            "02_GODISNJI_PLANOVI_I_PROGRAMI",
+            "03_SKOLSKI_KURIKULUM",
+            "04_STATUT",
+            "05_PRAVILNICI",
+            "06_IZVJESCA_O_RADU",
+            "07_ODLUKE",
+            "08_SKOLSKI_ODBOR",
+            "09_SKOLSKI_PREVENTIVNI_PROGRAM"
         ],
         "imageFloat": "none",
         "websiteGen": 3,
