@@ -330,7 +330,38 @@ for every_file in files:
         else:  
             velicina = str(math.trunc(kb_size)) + " KB"
 
-        naslov_dokumenta = input("Unesi naslov dokumenta " + '"' + name_of_the_file + '": ')
+
+        naslov_dokumenta = "" #Asking the user for the name of the file
+
+        uppercased_filename = filename.upper()
+
+        #Universal names
+        if uppercased_filename == "POZIV_NA_DOSTAVU_PONUDA":
+            naslov_dokumenta = "POZIV NA DOSTAVU PONUDA"
+        elif uppercased_filename == "TROSKOVNIK":
+            naslov_dokumenta = "TROŠKOVNIK"
+        elif uppercased_filename == "PONUDBENI_LIST":
+            naslov_dokumenta = "PONUDBENI LIST"
+        elif uppercased_filename == "ODLUKA_O_ODABIRU":
+            naslov_dokumenta = "ODLUKA O ODABIRU"
+        elif uppercased_filename.split("_")[-1] == "POZIV":
+            naslov_dokumenta == "POZIV - DNEVNI RED"
+        elif uppercased_filename.split("_")[-1] == "ZAPISNIK":
+            naslov_dokumenta == "ZAPISNIK"
+            
+        #drnis.hr file names
+        elif uppercased_filename.split("_")[-1] == "AKTI" and odabranaStranica["tablica"] == "drnis.hr":
+            naslov_dokumenta == "AKTI"
+
+        #promina.hr file names
+        elif uppercased_filename.split("_")[-1] == "AKATA" and odabranaStranica["tablica"] == "promina.hr":
+            naslov_dokumenta == "USVOJENI AKTI"
+        elif uppercased_filename.split("_")[-1] == "AKATA" and odabranaStranica["tablica"] == "promina.hr":
+            naslov_dokumenta == "PRIJEDLOZI AKATA"
+        
+        else:
+            naslov_dokumenta = input("Unesi naslov dokumenta " + '"' + name_of_the_file + '": ')
+
 
         #Djecji vrtić Drniš tablica
         if odabranaStranica["tablica"] == "djecji-vrtic-drnis.hr":
