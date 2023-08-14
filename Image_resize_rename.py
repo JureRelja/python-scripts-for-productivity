@@ -4,7 +4,7 @@ import os
 import shutil
 
 downloads = str(Path.home() / "Downloads")
-imgFile = str(Path.home() / "Downloads/Novi album")
+imgFile = str(Path.home() / "Downloads/Album")
 
 if imgFile is True:
     shutil.rmtree(imgFile)
