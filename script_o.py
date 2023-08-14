@@ -519,7 +519,7 @@ for every_file in files:
             txtFile.write("<td style=" + '"' + "text-align: center; border: solid 1px #dddddd; background-color: #ffffff; color: #666666; width: 40px;" + '"' + ">" + str(broj_datoteke) + "." + "</td>\n")
             txtFile.write("<td style=" + '"' + "text-align: left; padding: 5px 5px 5px 5px; border: solid 1px #dddddd; background-color: #ffffff; color: #666666;" + '"' + ">" + privitak_poveznica + naslov_dokumenta + "</a></td>\n")
             txtFile.write("<td style=" + '"' + "text-align: center; background-color: #ffffff; border: solid 1px #dddddd; color: #666666; width: 80px;" + '"' + ">" + velicina + "</td>\n")
-            txtFile.write("<td style=" + '"' + "text-align: center; border: solid 1px #dddddd; background-color: #ffffff; color: #666666; width: 50px; vertical-align: middle;" + '"' + ">" + "<img src=" + '"' + ekstenzija + '"' + " alt=" + '"' + "/></td>\n")
+            txtFile.write("<td style=" + '"' + "text-align: center; border: solid 1px #dddddd; background-color: #ffffff; color: #666666; width: 50px; vertical-align: middle;" + '"' + ">" + "<img style=" + '"' + "padding: 5px 0px; float:none;" + '"' + "src=" + '"' + ekstenzija + '"' + " alt=" + '"' + "/></td>\n")
             txtFile.write("</tr>\n")
 
          # Općina Biskupija tablica
