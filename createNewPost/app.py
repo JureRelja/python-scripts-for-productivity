@@ -1,10 +1,11 @@
 from pathlib import Path
-from selenium import webdriver
-from selenium.webdriver.chrome.service import Service
 from time import sleep
 from selenium.webdriver.common.by import By
 import os
 import tempfile
+from selenium import webdriver
+from selenium.webdriver.chrome.service import Service as ChromeService
+from webdriver_manager.chrome import ChromeDriverManager
 
 from navToFolder import navigateToNewFolder
 from resize import resize #Importing the function from resize.py
@@ -44,7 +45,7 @@ while i < filesLenght:
 tempFile = tempfile.TemporaryFile(mode='w+t', encoding="utf-8")
 
 #Setting up the webdriver
-service = Service("../cromedriver/chromedriver.exe")
+# service = Service("../cromedriver/chromedriver.exe")
 options = webdriver.ChromeOptions()
 options.add_argument("--start-maximized")
 
@@ -71,7 +72,7 @@ tempFile.read()
 for file in files:
     filesForDeleting.append(file["fileName"])
 
-browser = webdriver.Chrome(service=service, options=options) #Opening the browser
+browser = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
 
 authentificate(selectedWebsite=selectedWebsite[0]["url"], browser=browser, websiteGen=selectedWebsite[4]) #Authentificating the user
 

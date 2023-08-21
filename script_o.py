@@ -344,6 +344,8 @@ for every_file in files:
             naslov_dokumenta = "PONUDBENI LIST"
         elif uppercased_filename == "ODLUKA_O_ODABIRU":
             naslov_dokumenta = "ODLUKA O ODABIRU"
+        elif uppercased_filename == "ODLUKA_O_PONISTENJU":
+            naslov_dokumenta = "ODLUKA O PONIŠTENJU"
         elif uppercased_filename.split("_")[-1] == "POZIV":
             naslov_dokumenta == "POZIV - DNEVNI RED"
         elif uppercased_filename.split("_")[-1] == "ZAPISNIK":
