@@ -348,6 +348,10 @@ for every_file in files:
             naslov_dokumenta = "ODLUKA O PONIŠTENJU"
         elif uppercased_filename.split("_")[-1] == "POZIV":
             naslov_dokumenta == "POZIV - DNEVNI RED"
+        elif uppercased_filename == "DODATAK_PONUDBENOM_LISTU_1A" or uppercased_filename == "DODATAK_PONUDBENOM_LISTU_1":
+            naslov_dokumenta = "DODATAK PONUDBENOM LISTU U SLUČAJU ZAJEDNICE PONUDITELJA"
+        elif uppercased_filename == "DODATAK_PONUDBENOM_LISTU_1B" or uppercased_filename == "DODATAK_PONUDBENOM_LISTU_2":
+            naslov_dokumenta = "DODATAK PONUDBENOM LISTU U SLUČAJU PODUGOVARATELJA"
         elif uppercased_filename.split("_")[-1] == "ZAPISNIK":
             naslov_dokumenta == "ZAPISNIK"
             

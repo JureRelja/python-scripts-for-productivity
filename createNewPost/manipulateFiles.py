@@ -105,7 +105,7 @@ def manipulateFiles(files, downloads, selectedWebsite):
             naslov_dokumenta = "POZIV NA DOSTAVU PONUDA"
         elif uppercased_filename == "TROSKOVNIK":
             naslov_dokumenta = "TROŠKOVNIK"
-        elif uppercased_filename == "PONUDBENI_LIST":
+        elif uppercased_filename == "PONUDBENI_LIST" or uppercased_filename == "PRILOG_1_PONUDBENI_LIST":
             naslov_dokumenta = "PONUDBENI LIST"
         elif uppercased_filename == "ODLUKA_O_ODABIRU":
             naslov_dokumenta = "ODLUKA O ODABIRU"
@@ -113,6 +113,10 @@ def manipulateFiles(files, downloads, selectedWebsite):
             naslov_dokumenta = "ODLUKA O PONIŠTENJU"
         elif uppercased_filename.split("_")[-1] == "POZIV":
             naslov_dokumenta == "POZIV - DNEVNI RED"
+        elif uppercased_filename == "DODATAK_PONUDBENOM_LISTU_1A" or uppercased_filename == "DODATAK_PONUDBENOM_LISTU_1":
+            naslov_dokumenta = "DODATAK PONUDBENOM LISTU U SLUČAJU ZAJEDNICE PONUDITELJA"
+        elif uppercased_filename == "DODATAK_PONUDBENOM_LISTU_1B" or uppercased_filename == "DODATAK_PONUDBENOM_LISTU_2":
+            naslov_dokumenta = "DODATAK PONUDBENOM LISTU U SLUČAJU PODUGOVARATELJA"
         elif uppercased_filename.split("_")[-1] == "ZAPISNIK":
             naslov_dokumenta == "ZAPISNIK"
             

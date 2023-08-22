@@ -58,7 +58,6 @@ def createPost(browser, category, folder, postTitle, widgetID, imagesExist, webs
         browser.execute_script("arguments[0].scrollIntoView();", contentInput)
 
         table = tempFile.read() #Reading the table from the file
-        print(table)
 
         contentInput.send_keys(table) #Entering the content
 
