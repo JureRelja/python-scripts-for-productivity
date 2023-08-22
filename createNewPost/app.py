@@ -44,13 +44,6 @@ while i < filesLenght:
 
 tempFile = tempfile.TemporaryFile(mode='w+t', encoding="utf-8")
 
-#Setting up the webdriver
-# service = Service("../cromedriver/chromedriver.exe")
-options = webdriver.ChromeOptions()
-options.add_argument("--start-maximized")
-
-#options.add_argument('--headless')
-
 selectedWebsite = selectWebsite() #Selecting the website
 
 date = selectDateYear() #Getting the current month, day and year
@@ -72,7 +65,9 @@ tempFile.read()
 for file in files:
     filesForDeleting.append(file["fileName"])
 
+#Setting up the webdriver
 browser = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
+browser.maximize_window()
 
 authentificate(selectedWebsite=selectedWebsite[0]["url"], browser=browser, websiteGen=selectedWebsite[4]) #Authentificating the user
 
