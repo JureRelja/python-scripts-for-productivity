@@ -648,7 +648,7 @@ subprocess.call(["taskkill","/F","/IM","notepad.exe"])
 
 # Deleting all files in downloads folder
 for every_file in os.listdir(downloads):
-    if every_file.endswith(".xlsx") or every_file.endswith(".xls") or every_file.endswith(".docx") or every_file.endswith(".pdf") or every_file.endswith(".doc") or every_file.endswith(".ods"):
+    if every_file.endswith(".xlsx") or every_file.endswith(".xls") or every_file.endswith(".docx") or every_file.endswith(".pdf") or every_file.endswith(".doc") or every_file.endswith(".ods") or every_file == "Objava.txt":
         os.remove(os.path.join(downloads, every_file))
 
         
