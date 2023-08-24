@@ -47,6 +47,7 @@ def navigateToNewFolder(browser, categoryName, subCategory, websiteGen, date):
                 try: 
                     categoryFolder = browser.find_element(By.LINK_TEXT, subCategory) #Getting the cattegory folder
                     scrollAndClick(browser, categoryFolder)
+                    sleep(1)
                     break;
                 except NoSuchElementException:
                     sleep(0.1)
@@ -57,6 +58,7 @@ def navigateToNewFolder(browser, categoryName, subCategory, websiteGen, date):
             sleep(1)
         except NoSuchElementException: 
             createFolderAndNavigate(browser, str(date["year"]), yearFolder) #If it doesn't, create it and click on it
+            sleep(1)
 
         navigationFolder = yearFolder + "-" + currentDateFolder 
         

@@ -1,8 +1,11 @@
-def createHTMLTable(files, year, folder, tempFile, selectedWebsite, categoryName, filesExist):
+def createHTMLTable(files, year, folder, tempFile, selectedWebsite, categoryName, subCategory, filesExist):
     tableExist = False
 
     if filesExist == False:
         return tableExist
+    
+    if subCategory != "":
+        categoryName = categoryName + "/" + subCategory
     
     #Creating the header of the table
         # Djecji vrtić Drniš tablica 

@@ -61,4 +61,5 @@ def selectWebsite():
 
     postTitle = input("Unesi naslov nove objave: ")
 
+
     return selectedWebsite, selectedCategory, postTitle, imageFloat, websiteGen, imageFloatDefault, selectedSubCategory

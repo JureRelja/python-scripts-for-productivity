@@ -79,7 +79,7 @@ imagesExist = uploadImages(browser=browser, imgFile=imgFile, downloads=downloads
 
 widgetID = createWidget(browser=browser, imageNum=imageNum, postTitle=selectedWebsite[2], folder=folder[1], category=selectedWebsite[1]["category"], albumExists=imagesExist[1], websiteGen=selectedWebsite[4], date=date) #Creating the widget
 
-tableExist = createHTMLTable(files=files, categoryName=selectedWebsite[1]["category"], filesExist=filesExist, year=date["year"], folder=folder[1], tempFile=tempFile, selectedWebsite=selectedWebsite[0]["url"]) #Creating the HTML table
+tableExist = createHTMLTable(files=files, categoryName=selectedWebsite[1]["category"], subCategory=selectedWebsite[6], filesExist=filesExist, year=date["year"], folder=folder[1], tempFile=tempFile, selectedWebsite=selectedWebsite[0]["url"]) #Creating the HTML table
 tempFile.seek(0)
 
 createPost(browser=browser, category=selectedWebsite[1]["category"], folder=folder[1], postTitle=selectedWebsite[2], widgetID=widgetID, tempFile=tempFile, imagesExist=imagesExist, tableExist=tableExist, imageFloat=selectedWebsite[3], imageFloatDefault=selectedWebsite[5], websiteGen=selectedWebsite[4], date=date) #Creating the post
