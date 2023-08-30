@@ -243,7 +243,7 @@ for every_file in files:
             tempIndex = tempIndex + 1
             continue
 
-        if ext == ".pdf":
+        if ext == ".pdf" or ext == ".zip":
             index = index + 1
             tempIndex = tempIndex + 1
             continue
@@ -358,6 +358,8 @@ for every_file in files:
         #drnis.hr file names
         elif uppercased_filename.split("_")[-1] == "AKTI" and odabranaStranica["tablica"] == "drnis.hr":
             naslov_dokumenta == "AKTI"
+        elif uppercased_filename.split("_")[-1] == "RED" and uppercased_filename.split("_")[-2] == "DNEVNI" and odabranaStranica["tablica"] == "drnis.hr":
+            naslov_dokumenta == "DNEVNI RED"
 
         #promina.hr file names
         elif uppercased_filename.split("_")[-1] == "AKATA" and odabranaStranica["tablica"] == "promina.hr":

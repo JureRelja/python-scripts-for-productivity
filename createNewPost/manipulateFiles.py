@@ -30,7 +30,7 @@ def manipulateFiles(files, downloads, selectedWebsite):
                 tempIndex = tempIndex + 1
                 continue
 
-            if ext == ".pdf":
+            if ext == ".pdf" or ext == ".zip":
                 index = index + 1
                 tempIndex = tempIndex + 1
                 continue
@@ -123,6 +123,8 @@ def manipulateFiles(files, downloads, selectedWebsite):
         #drnis.hr file names
         elif uppercased_filename.split("_")[-1] == "AKTI" and selectedWebsite == "drnis.hr":
             naslov_dokumenta == "AKTI"
+        elif uppercased_filename.split("_")[-1] == "RED" and uppercased_filename.split("_")[-2] == "DNEVNI" and selectedWebsite == "drnis.hr":
+            naslov_dokumenta == "DNEVNI RED"
 
         #promina.hr file names
         elif uppercased_filename.split("_")[-1] == "AKATA" and selectedWebsite == "promina.hr":
