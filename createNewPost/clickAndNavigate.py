@@ -22,7 +22,7 @@ def click(element):
                 element_is_interactable = True
             except (NoSuchElementException, ElementNotInteractableException, ElementClickInterceptedException) as e:
                 counter += 1
-    sleep(1)  
+    sleep(2)  
     return element_is_interactable
 
 def waitToClick(browser, method, methodValue):
