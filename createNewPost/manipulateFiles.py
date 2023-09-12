@@ -111,26 +111,28 @@ def manipulateFiles(files, downloads, selectedWebsite):
             naslov_dokumenta = "ODLUKA O ODABIRU"
         elif uppercased_filename == "ODLUKA_O_PONISTENJU":
             naslov_dokumenta = "ODLUKA O PONIŠTENJU"
-        elif uppercased_filename.split("_")[-1] == "POZIV":
-            naslov_dokumenta == "POZIV - DNEVNI RED"
+        elif uppercased_filename.split("_")[-1] == "ZAPISNIK":
+            naslov_dokumenta = "ZAPISNIK"
+
+        #biskupija.hr file names
+        elif uppercased_filename.split("_")[-1] == "POZIV" and uppercased_filename.split("_")[-2] == "OV" and selectedWebsite == "biskupija.hr":
+            naslov_dokumenta = "POZIV - DNEVNI RED"
+            
+        #drnis.hr file names
+        elif uppercased_filename.split("_")[-1] == "AKTI" and selectedWebsite == "drnis.hr":
+            naslov_dokumenta = "AKTI"
+        elif uppercased_filename.split("_")[-1] == "RED" and uppercased_filename.split("_")[-2] == "DNEVNI" and selectedWebsite == "drnis.hr":
+            naslov_dokumenta = "DNEVNI RED"
         elif uppercased_filename == "DODATAK_PONUDBENOM_LISTU_1A" or uppercased_filename == "DODATAK_PONUDBENOM_LISTU_1":
             naslov_dokumenta = "DODATAK PONUDBENOM LISTU U SLUČAJU ZAJEDNICE PONUDITELJA"
         elif uppercased_filename == "DODATAK_PONUDBENOM_LISTU_1B" or uppercased_filename == "DODATAK_PONUDBENOM_LISTU_2":
             naslov_dokumenta = "DODATAK PONUDBENOM LISTU U SLUČAJU PODUGOVARATELJA"
-        elif uppercased_filename.split("_")[-1] == "ZAPISNIK":
-            naslov_dokumenta == "ZAPISNIK"
-            
-        #drnis.hr file names
-        elif uppercased_filename.split("_")[-1] == "AKTI" and selectedWebsite == "drnis.hr":
-            naslov_dokumenta == "AKTI"
-        elif uppercased_filename.split("_")[-1] == "RED" and uppercased_filename.split("_")[-2] == "DNEVNI" and selectedWebsite == "drnis.hr":
-            naslov_dokumenta == "DNEVNI RED"
 
         #promina.hr file names
         elif uppercased_filename.split("_")[-1] == "AKATA" and selectedWebsite == "promina.hr":
-            naslov_dokumenta == "USVOJENI AKTI"
+            naslov_dokumenta = "USVOJENI AKTI"
         elif uppercased_filename.split("_")[-1] == "AKATA" and selectedWebsite == "promina.hr":
-            naslov_dokumenta == "PRIJEDLOZI AKATA"
+            naslov_dokumenta = "PRIJEDLOZI AKATA"
         
         else:
             naslov_dokumenta = input("Unesi naslov dokumenta " + '"' + name_of_the_file + '": ')

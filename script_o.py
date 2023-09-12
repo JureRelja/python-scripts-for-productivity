@@ -346,30 +346,34 @@ for every_file in files:
             naslov_dokumenta = "ODLUKA O ODABIRU"
         elif uppercased_filename == "ODLUKA_O_PONISTENJU":
             naslov_dokumenta = "ODLUKA O PONIŠTENJU"
-        elif uppercased_filename.split("_")[-1] == "POZIV":
-            naslov_dokumenta == "POZIV - DNEVNI RED"
+        elif uppercased_filename.split("_")[-1] == "ZAPISNIK":
+            naslov_dokumenta = "ZAPISNIK"
+
+        #biskupija.hr file names
+        elif uppercased_filename.split("_")[-1] == "POZIV" and uppercased_filename.split("_")[-2] == "OV" and odabranaStranica["tablica"] == "biskupija.hr":
+            naslov_dokumenta = "POZIV - DNEVNI RED"
+            
+        #drnis.hr file names
+        elif (uppercased_filename.split("_")[-1] == "AKTI" and odabranaStranica["tablica"] == "drnis.hr"):
+            naslov_dokumenta = "AKTI"
+        elif (uppercased_filename.split("_")[-1] == "RED" and uppercased_filename.split("_")[-2] == "DNEVNI" and odabranaStranica["tablica"] == "drnis.hr"):
+            naslov_dokumenta = "DNEVNI RED"
         elif uppercased_filename == "DODATAK_PONUDBENOM_LISTU_1A" or uppercased_filename == "DODATAK_PONUDBENOM_LISTU_1":
             naslov_dokumenta = "DODATAK PONUDBENOM LISTU U SLUČAJU ZAJEDNICE PONUDITELJA"
         elif uppercased_filename == "DODATAK_PONUDBENOM_LISTU_1B" or uppercased_filename == "DODATAK_PONUDBENOM_LISTU_2":
             naslov_dokumenta = "DODATAK PONUDBENOM LISTU U SLUČAJU PODUGOVARATELJA"
-        elif uppercased_filename.split("_")[-1] == "ZAPISNIK":
-            naslov_dokumenta == "ZAPISNIK"
-            
-        #drnis.hr file names
-        elif uppercased_filename.split("_")[-1] == "AKTI" and odabranaStranica["tablica"] == "drnis.hr":
-            naslov_dokumenta == "AKTI"
-        elif uppercased_filename.split("_")[-1] == "RED" and uppercased_filename.split("_")[-2] == "DNEVNI" and odabranaStranica["tablica"] == "drnis.hr":
-            naslov_dokumenta == "DNEVNI RED"
 
         #promina.hr file names
         elif uppercased_filename.split("_")[-1] == "AKATA" and odabranaStranica["tablica"] == "promina.hr":
-            naslov_dokumenta == "USVOJENI AKTI"
+            naslov_dokumenta = "USVOJENI AKTI"
         elif uppercased_filename.split("_")[-1] == "AKATA" and odabranaStranica["tablica"] == "promina.hr":
-            naslov_dokumenta == "PRIJEDLOZI AKATA"
+            naslov_dokumenta = "PRIJEDLOZI AKATA"
         
         else:
             naslov_dokumenta = input("Unesi naslov dokumenta " + '"' + name_of_the_file + '": ')
 
+        print(uppercased_filename)
+        print(naslov_dokumenta)
 
         #Djecji vrtić Drniš tablica
         if odabranaStranica["tablica"] == "djecji-vrtic-drnis.hr":
@@ -452,6 +456,17 @@ for every_file in files:
             txtFile.write("</tr>\n")
 
         elif odabranaStranica["tablica"] == "promina.hr":
+            ekstenzija = ""
+
+            if ext == ".rar" or ext == ".zip":
+                ekstenzija = "images/11_IKONE_DOKUMENATA/rar.png"
+            elif ext == ".pdf":
+                ekstenzija = "images/11_IKONE_DOKUMENATA/pdf.png"
+            elif ext== ".xlsx" or ext == ".xls":
+                ekstenzija = "images/11_IKONE_DOKUMENATA/xls.png"
+            else:
+                ekstenzija = "images/11_IKONE_DOKUMENATA/doc.png"
+
             privitak_poveznica = "<td style=" + '"' + "text-align: center; background-color: #ffffff; border: solid 1px #bbbbbb;" + '"' + "><a style=" + '"' + "font-size: 14px; font-weight: bold;" + '"' + " href=" + '"' + (location + "/" + name_of_the_file) + '"'  + " target=" + '"' + "_blank" + '"' + " rel=" + '"' + "noopener noreferrer" + '"' + ">" + "<img src=" + '"' + "images/11_IKONE_DOKUMENATA/download.png" + '"' +  " alt=" + '"' + '"' + " /></a></td>\n"
 
             txtFile.write("<tr>\n")
