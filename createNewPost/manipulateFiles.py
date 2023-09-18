@@ -117,6 +117,8 @@ def manipulateFiles(files, downloads, selectedWebsite):
         #biskupija.hr file names
         elif uppercased_filename.split("_")[-1] == "POZIV" and uppercased_filename.split("_")[-2] == "OV" and selectedWebsite == "biskupija.hr":
             naslov_dokumenta = "POZIV - DNEVNI RED"
+        elif uppercased_filename.split("_")[-1] == "AKTI" and selectedWebsite == "biskupija.hr":
+            naslov_dokumenta = "AKTI"
             
         #drnis.hr file names
         elif uppercased_filename.split("_")[-1] == "AKTI" and selectedWebsite == "drnis.hr":

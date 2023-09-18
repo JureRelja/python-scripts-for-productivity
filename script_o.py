@@ -352,6 +352,8 @@ for every_file in files:
         #biskupija.hr file names
         elif uppercased_filename.split("_")[-1] == "POZIV" and uppercased_filename.split("_")[-2] == "OV" and odabranaStranica["tablica"] == "biskupija.hr":
             naslov_dokumenta = "POZIV - DNEVNI RED"
+        elif (uppercased_filename.split("_")[-1] == "AKTI" and odabranaStranica["tablica"] == "biskupija.hr"):
+            naslov_dokumenta = "AKTI"
             
         #drnis.hr file names
         elif (uppercased_filename.split("_")[-1] == "AKTI" and odabranaStranica["tablica"] == "drnis.hr"):
@@ -371,9 +373,6 @@ for every_file in files:
         
         else:
             naslov_dokumenta = input("Unesi naslov dokumenta " + '"' + name_of_the_file + '": ')
-
-        print(uppercased_filename)
-        print(naslov_dokumenta)
 
         #Djecji vrtić Drniš tablica
         if odabranaStranica["tablica"] == "djecji-vrtic-drnis.hr":

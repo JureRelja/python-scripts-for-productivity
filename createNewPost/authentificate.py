@@ -6,7 +6,7 @@ from time import sleep
 adimnPath = "/administrator"
 
 def authentificate(selectedWebsite, browser, websiteGen):
-  file = open(r"C:\Users\jurer\OneDrive\Osobni\Documents\My Web Projects\scripts\websitesData\passwords.json", "r")
+  file = open(r"C:\Users\jurer\OneDrive\Osobni\scripts\websitesData\passwords.json", "r")
   passwords = json.load(file)
 
   password = ""
