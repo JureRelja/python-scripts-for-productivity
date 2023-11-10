@@ -2,11 +2,12 @@
 from selenium.webdriver.common.by import By
 import json
 from time import sleep
+from selenium.webdriver.common.keys import Keys
 
 adimnPath = "/administrator"
 
 def authentificate(selectedWebsite, browser, websiteGen):
-  file = open(r"C:\Users\jurer\OneDrive\Osobni\scripts\websitesData\passwords.json", "r")
+  file = open(r"C:\Users\jurer\OneDrive\scripts\websitesData\passwords.json", "r")
   passwords = json.load(file)
 
   password = ""

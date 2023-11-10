@@ -1,7 +1,7 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.action_chains import ActionChains
 from time import sleep
-from selenium.common.exceptions import NoSuchElementException
+from selenium.common.exceptions import NoSuchElementException, ElementNotInteractableException
 
 from clickAndNavigate import click
 from rename import rename
@@ -33,12 +33,15 @@ def createWidget(browser, imageNum, postTitle, folder, category, albumExists, we
 
     elif websiteGen == 4:
         for i in range(0, 100):
-            widgetNum = browser.find_elements(By.CLASS_NAME, 'uk-visible-toggle')
-            if (len(widgetNum) > 0):
-                break
-            else:
+            try: 
+                widgetNum = browser.find_elements(By.CLASS_NAME, 'uk-visible-toggle')
+                if (len(widgetNum) > 0):
+                    break
+                else:
+                    sleep(0.1)
+                    continue
+            except NoSuchElementException or ElementNotInteractableException:
                 sleep(0.1)
-                continue
 
     elif websiteGen == 2:
 
@@ -215,9 +218,19 @@ def newWidgetGen3(browser, postTitle, folder, widgetType, category, year):
 
             copyIcon = widget.find_elements(By.XPATH, "*")[-1].find_element(By.XPATH, "*") #Finding the copy icon
 
+            
+
             a.move_to_element(copyIcon) #Hovering over the copy icon
             a.perform() #Performing the hover action
-            copyIcon.click()       #Clicking on the copy icon
+            for i in range(0, 100):
+                try:
+                    browser.execute_script("arguments[0].scrollIntoView();", copyIcon)
+                    browser.execute_script("window.scrollBy(0, -200)","")
+                    copyIcon.click()       #Clicking on the copy icon
+                    break
+                except ElementNotInteractableException or NoSuchElementException:
+                    sleep(0.1)
+                    continue
 
             #Waiting for the new widget to appear
             for i in range(0, 100):

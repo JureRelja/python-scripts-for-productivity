@@ -30,7 +30,7 @@ def manipulateFiles(files, downloads, selectedWebsite):
                 tempIndex = tempIndex + 1
                 continue
 
-            if ext == ".pdf" or ext == ".zip":
+            if ext == ".pdf" or ext == ".zip" or ext == "rar":
                 index = index + 1
                 tempIndex = tempIndex + 1
                 continue
@@ -103,10 +103,12 @@ def manipulateFiles(files, downloads, selectedWebsite):
         #Universal names
         if uppercased_filename == "POZIV_NA_DOSTAVU_PONUDA":
             naslov_dokumenta = "POZIV NA DOSTAVU PONUDA"
-        elif uppercased_filename == "TROSKOVNIK":
+        elif uppercased_filename == "TROSKOVNIK" or uppercased_filename == "PRILOG_2_TROSKOVNIK":
             naslov_dokumenta = "TROŠKOVNIK"
         elif uppercased_filename == "PONUDBENI_LIST" or uppercased_filename == "PRILOG_1_PONUDBENI_LIST":
             naslov_dokumenta = "PONUDBENI LIST"
+        elif uppercased_filename.split("_")[-1] == "NEKAZNJAVANJU" and uppercased_filename.split("_")[-2] == "O" and uppercased_filename.split("_")[-3] == "IZJAVA":
+            naslov_dokumenta = "IZJAVA O NEKAŽNJAVANJU"
         elif uppercased_filename == "ODLUKA_O_ODABIRU":
             naslov_dokumenta = "ODLUKA O ODABIRU"
         elif uppercased_filename == "ODLUKA_O_PONISTENJU":
@@ -135,6 +137,10 @@ def manipulateFiles(files, downloads, selectedWebsite):
             naslov_dokumenta = "USVOJENI AKTI"
         elif uppercased_filename.split("_")[-1] == "AKATA" and selectedWebsite == "promina.hr":
             naslov_dokumenta = "PRIJEDLOZI AKATA"
+        elif uppercased_filename == "TROSKOVNIK_S_POJASNJENJIMA" and selectedWebsite == "promina.hr":
+            naslov_dokumenta = "TROŠKOVNIK S POJAŠNJENJIMA"
+        elif uppercased_filename.split("_")[-1] == "RED" and uppercased_filename.split("_")[-2] == "DNEVNI" and selectedWebsite == "promina.hr":
+            naslov_dokumenta = "DNEVNI RED"
         
         else:
             naslov_dokumenta = input("Unesi naslov dokumenta " + '"' + name_of_the_file + '": ')

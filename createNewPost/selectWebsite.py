@@ -13,7 +13,7 @@ def selectWebsite():
 
     selectedWebsite = inquirer.prompt(allWebsites)
 
-    file = open(r"C:\Users\jurer\OneDrive\Osobni\scripts\websitesData\docCategories.json", "r")
+    file = open(r"C:\Users\jurer\OneDrive\scripts\websitesData\docCategories.json", "r")
     websites = json.load(file)
 
     websiteCategories = [] #List of categories for the selected website

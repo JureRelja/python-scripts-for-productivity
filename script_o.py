@@ -243,7 +243,7 @@ for every_file in files:
             tempIndex = tempIndex + 1
             continue
 
-        if ext == ".pdf" or ext == ".zip":
+        if ext == ".pdf" or ext == ".zip" or ext == "rar":
             index = index + 1
             tempIndex = tempIndex + 1
             continue
@@ -370,6 +370,8 @@ for every_file in files:
             naslov_dokumenta = "USVOJENI AKTI"
         elif uppercased_filename.split("_")[-1] == "AKATA" and odabranaStranica["tablica"] == "promina.hr":
             naslov_dokumenta = "PRIJEDLOZI AKATA"
+        elif uppercased_filename.split("_")[-1] == "RED" and uppercased_filename.split("_")[-2] == "DNEVNI" and odabranaStranica["tablica"] == "promina.hr":
+            naslov_dokumenta = "DNEVNI RED"
         
         else:
             naslov_dokumenta = input("Unesi naslov dokumenta " + '"' + name_of_the_file + '": ')
