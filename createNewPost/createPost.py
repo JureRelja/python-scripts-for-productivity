@@ -43,7 +43,8 @@ def createPost(browser, category, folder, postTitle, widgetID, imagesExist, webs
         browser.switch_to.frame(contentIframe)
 
         contentInput = browser.find_element(By.ID, "tinymce") #Finding the content input
-        contentInput.send_keys(widgetID) #Entering the content
+        for i in range(0, 2):
+            contentInput.send_keys(widgetID[i]) #Entering the content
 
         browser.switch_to.default_content() #Switching back to the default content
 

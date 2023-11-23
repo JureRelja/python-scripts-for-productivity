@@ -2,6 +2,7 @@ import os
 from PIL import Image, ImageOps
 import os
 import shutil
+from os.path import exists
 
 #Function for resizing images
 def resize(downloads, imgFile):
@@ -17,14 +18,18 @@ def resize(downloads, imgFile):
         #Checks if the file is an image
         if (image == "naslovna.jpg"):
             continue
+
+        if  "1.jpg" in os.listdir(downloads) and "2.jpg" in os.listdir(downloads) and len(os.listdir(downloads)) == 4:
+            b = "two_albums"
+            return b;
         
-        if (image == "1.jpg") and len(os.listdir(downloads)) == 4:
+        if (image == "1.jpg") and (len(os.listdir(downloads)) == 4 or len(os.listdir(downloads)) == 3):
             b = 1
             return b
         
-        if len(os.listdir(downloads)) == 4 and "naslovna.jpg" in os.listdir(downloads):
-            b = 0
-            return b
+       # if len(os.listdir(downloads)) == 4 and "naslovna.jpg" in os.listdir(downloads):
+       #     b = 0
+       #     return b
 
         if image.endswith(".jpg") or image.endswith(".JPG") or image.endswith(".png") or image.endswith(".PNG") or image.endswith(".jpeg") or image.endswith(".JPEG"):
             ime = i[b]
