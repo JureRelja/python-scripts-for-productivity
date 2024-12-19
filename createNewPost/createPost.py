@@ -38,21 +38,47 @@ def createPost(browser, category, folder, postTitle, widgetID, imagesExist, webs
     titleInput.send_keys(postTitle)
 
     #Entering the widgetID if there is album for this post
+
     if (imagesExist[1]):
-        contentIframe = browser.find_element(By.XPATH, "//iframe[@ID='jform_articletext_ifr']") #Switching to the content iframe
-        browser.switch_to.frame(contentIframe)
 
-        contentInput = browser.find_element(By.ID, "tinymce") #Finding the content input
-        for i in range(0, 2):
-            contentInput.send_keys(widgetID[i]) #Entering the content
+        contentIframe = ""
 
-        browser.switch_to.default_content() #Switching back to the default content
+        try:
+            contentIframe = browser.find_element(By.XPATH, "//iframe[@ID='jform_articletext_ifr']")
+        except NoSuchElementException:
+            sleep(0.1)
+           
+        if contentIframe:
+
+            contentIframe = browser.find_element(By.XPATH, "//iframe[@ID='jform_articletext_ifr']") #Switching to the content iframe
+            browser.switch_to.frame(contentIframe)
+
+            contentInput = browser.find_element(By.ID, "tinymce") #Finding the content input
+            for i in range(0, 2):
+                contentInput.send_keys(widgetID[i]) #Entering the content
+
+            browser.switch_to.default_content() #Switching back to the default content
+        else:
+            contentInput = browser.find_element(By.ID, "jform_articletext")
+            browser.execute_script("arguments[0].scrollIntoView();", contentInput)
+            for i in range(0, 2):
+                contentInput.send_keys(widgetID[i]) #Entering the content
+
 
     #Entering the table if it exists
     if (tableExist):
-        toggleBtn = browser.find_element(By.CLASS_NAME, "toggle-editor").find_element(By.XPATH, "*") #Clicking on the "Toggle editor" button
-        browser.execute_script("arguments[0].scrollIntoView();", toggleBtn)
-        click(toggleBtn)
+        contentIframe = ""
+
+        try:
+            contentIframe = browser.find_element(By.XPATH, "//iframe[@ID='jform_articletext_ifr']")
+        except NoSuchElementException:
+            sleep(0.1)
+
+        if contentIframe:
+
+            toggleBtn = browser.find_element(By.CLASS_NAME, "toggle-editor").find_element(By.XPATH, "*") #Clicking on the "Toggle editor" button
+            browser.execute_script("arguments[0].scrollIntoView();", toggleBtn)
+            click(toggleBtn)
 
         contentInput = browser.find_element(By.ID, "jform_articletext") #Finding the content input
 
@@ -60,7 +86,12 @@ def createPost(browser, category, folder, postTitle, widgetID, imagesExist, webs
 
         table = tempFile.read() #Reading the table from the file
 
-        contentInput.send_keys(table) #Entering the content
+        for i in range(0, len(table), 100):
+            x = i
+            contentInput.send_keys(table[x:x+100]) #Entering the content
+
+        print(table)
+        print("\n")
 
 #Funciton for selecting an image
 def selectImg (browser, category, folder, imageOrder, imageFloat, imageFloatDefault, year):

@@ -4,6 +4,7 @@ import win32com.client
 import subprocess
 from pathlib import Path
 import inquirer
+import PyPDF2
 
 downloads = str(Path.home() / "Downloads")
 txtFile = open(downloads + "\Objava.txt","w+", encoding=("utf-8"))
@@ -28,10 +29,13 @@ naslov_clanka = input("Unesi naslov članka: ")
 txtFile.write("NASLOV CLANKA: " + naslov_clanka + "\n"*3)
 location = input("Lokacija datoteka: ")
 
+websitesUrls = ['drnis.hr', 'djecji-vrtic-drnis.hr',  'ss-ivana-mestrovica-drnis.hr', 'ogsko.hr', 'zena-drnis.hr', 'vrtic-trogir.hr', 'djecji-vrtic-marina.hr', 'pucko-otvoreno-uciliste-drnis.hr', 'promina.hr', 'dv-seget.hr', "eko-promina.hr", 'narodna-knjiznica-drnis.hr', 'gmd.hr', 'biskupija.hr', 'ligaprotivrakadrnis.hr', "nkdosk.hr", 'kalun.hr', 'gradskacistoca-drnis.hr',  'jvp-drnis.hr',  'komunalno-drustvo-biskupija.hr',  'lag-krka.hr', 'silvijasunara.com', 'ljekarna-drnis.hr']
+websitesUrls.sort()
+
 sveStranice = [
   inquirer.List('tablica',
                 message="Za koju stranicu želiš napraviti tablicu",
-                choices=['drnis.hr', 'djecji-vrtic-drnis.hr',  'ss-ivana-mestrovica-drnis.hr', 'ogsko.hr', 'zena-drnis.hr', 'vrtic-trogir.hr', 'djecji-vrtic-marina.hr', 'pucko-otvoreno-uciliste-drnis.hr', 'promina.hr', 'dv-seget.hr', "eko-promina.hr", 'narodna-knjiznica-drnis.hr', 'gmd.hr', 'biskupija.hr', 'ligaprotivrakadrnis.hr', "nkdosk.hr", 'kalun.hr', 'gradskacistoca-drnis.hr',  'jvp-drnis.hr',  'komunalno-drustvo-biskupija.hr',  'lag-krka.hr', 'silvijasunara.com', 'ljekarna-drnis.hr'],
+                choices=websitesUrls,
             ),
 ]
 
@@ -86,7 +90,7 @@ elif odabranaStranica['tablica'] == 'vrtic-trogir.hr':
     txtFile.write("</tr>\n")
 
 # Gradski muzej Drniš tablica
-elif odabranaStranica['tablica'] == 'gradski-muzej-drnis.hr':
+elif odabranaStranica['tablica'] == 'gmd.hr':
 
     txtFile.write("<table style=" + '"' + "text-align: center; width: 100%; margin-bottom: 10px;" + '"' + ">\n")
     txtFile.write("<tbody>\n")
@@ -96,6 +100,15 @@ elif odabranaStranica['tablica'] == 'gradski-muzej-drnis.hr':
 
 # Gradska čistoća Drniš tablica
 elif odabranaStranica['tablica'] == 'gradskacistoca-drnis.hr':
+
+    txtFile.write("<table style=" + '"' + "text-align: center; width: 100%; margin-bottom: 10px;" + '"' + ">\n")
+    txtFile.write("<tbody>\n")
+    txtFile.write("<tr>\n")
+    txtFile.write("<td style=" + '"' + "text-align: left; color: #444; font-weight: bold; font-size: 12px;" + '"' + " " + "colspan=" + '"' + ("4") + '"' + ">" + "DOKUMENTI ZA PREUZIMANJE:" + "</td>\n")
+    txtFile.write("</tr>\n")
+
+# lIGA protiv raka drniš tablica
+elif odabranaStranica['tablica'] == 'ligaprotivrakadrnis.hr':
 
     txtFile.write("<table style=" + '"' + "text-align: center; width: 100%; margin-bottom: 10px;" + '"' + ">\n")
     txtFile.write("<tbody>\n")
@@ -273,6 +286,70 @@ for every_file in files:
     index = index + 1
     tempIndex = tempIndex + 1
 
+#rotating PDF and removing empty PDF pages
+for every_file in files:
+    filename = os.path.splitext(every_file)[0]
+
+    ext = os.path.splitext(every_file)[1]
+
+    if every_file.endswith(".pdf"):
+        editedPDFIndex = files.index(every_file)
+
+        file1 = open(os.path.join(downloads, every_file), 'rb')
+        ReadPDF = PyPDF2.PdfReader(file1)
+
+        #Num of pages initially
+        pages = len(ReadPDF.pages)
+
+        #Creating new file which do not conatin any empty pages
+        output = PyPDF2.PdfWriter()
+        file2 = open(os.path.join(downloads, filename + "_" + ".pdf"), "wb")
+        files[editedPDFIndex] = filename + "_" + ".pdf"
+
+        ReadPDF = PyPDF2.PdfReader(file1)
+
+        noWhiteSpaceText = "".join(ReadPDF.pages[0].extract_text().split())
+
+        if len(noWhiteSpaceText) == 0:
+            print("Dokument " + "'" + every_file + "'" + " sadrzi skenirane dokumente. Provjerite ga da budete sigurni da je sve u redu")
+
+            file2.close()
+            file1.close()
+
+            os.remove(os.path.join(downloads, filename + "_" + ".pdf"))
+            files[editedPDFIndex] = filename + ".pdf"
+            continue
+        
+        for i in range(pages):
+            
+            pageObj = ReadPDF.pages[i]
+            #getting the page orientation
+            pageOrientation = ReadPDF.pages[i].get('/Rotate')
+            
+            #rotating page to make it correct
+            if pageOrientation:
+                pageObj.rotate(-pageOrientation)
+
+            #getting page text
+            text = pageObj.extract_text()
+            noWhiteSpaceTxt = "".join(text.split())
+
+
+            if len(noWhiteSpaceTxt) < 130:
+                action = input("Stranica " + str(i + 1) +  " PDF datoteke: " + every_file + " je kraća od 130 znakova. Zelite li ukloniti tu stranicu? d/n: ")
+
+                if action == "d" or action == "D":
+                    continue
+                else:
+                    output.add_page(pageObj)
+            else:
+                output.add_page(pageObj)
+
+        output.write(file2)
+        file2.close()
+        file1.close()
+
+        os.remove(os.path.join(downloads, every_file))
 
 
 for every_file in files:
@@ -291,6 +368,7 @@ for every_file in files:
         filename = filename.replace(" ", "_")
         filename = filename.replace(".", "_")
         filename = filename.replace("-", "_")
+        filename = filename.replace("–", "_")
         filename = filename.replace(",", "_")
         filename = filename.replace(";", "_")
         filename = filename.replace(":", "_")
@@ -304,6 +382,7 @@ for every_file in files:
         filename = filename.replace("š", "s")
         filename = filename.replace("Ž", "Z")
         filename = filename.replace("ž", "z")
+        filename = filename.replace("_–", "_")
         filename = filename.replace("__", "_")
         filename = filename.replace("__", "_")
         filename = filename.replace("___", "_")
@@ -319,17 +398,23 @@ for every_file in files:
         os.rename(os.path.join(downloads, every_file), os.path.join(downloads, rename))
 
         bits_size = os.path.getsize(os.path.join(downloads, rename))
-        name_of_the_file =  filename + ext
+        name_of_the_file = filename + ext
+
+        name_of_the_file = name_of_the_file.replace("__", "_")
+        name_of_the_file = name_of_the_file.replace("__", "_")
+        name_of_the_file = name_of_the_file.replace("___", "_")
 
     
-        
         kb_size = bits_size / 1024
         if kb_size > 1024:
             mb_size = round(kb_size / 1024, 1)
+            if mb_size.is_integer():
+                mb_size = round(mb_size)
             velicina = str(mb_size) + " MB"
         else:  
             velicina = str(math.trunc(kb_size)) + " KB"
 
+        velicina = velicina.replace(".", ",")
 
         naslov_dokumenta = "" #Asking the user for the name of the file
 
@@ -366,7 +451,7 @@ for every_file in files:
             naslov_dokumenta = "DODATAK PONUDBENOM LISTU U SLUČAJU PODUGOVARATELJA"
 
         #promina.hr file names
-        elif uppercased_filename.split("_")[-1] == "AKATA" and odabranaStranica["tablica"] == "promina.hr":
+        elif uppercased_filename.split("_")[-1] == "AKTI" and odabranaStranica["tablica"] == "promina.hr":
             naslov_dokumenta = "USVOJENI AKTI"
         elif uppercased_filename.split("_")[-1] == "AKATA" and odabranaStranica["tablica"] == "promina.hr":
             naslov_dokumenta = "PRIJEDLOZI AKATA"
@@ -442,6 +527,20 @@ for every_file in files:
             txtFile.write("<td style=" + '"' + "text-align: center; background-color: #fff; border: solid 1px #dddddd; color: #666666; width: 80px;" + '"' + ">" + velicina + "</td>\n")
             txtFile.write("<td style=" + '"' + "text-align: center; border: solid 1px #dddddd; background-color: #fff; color: #666666; width: 50px; vertical-align: middle;" + '"' + ">" + ext_upper + "</td>\n")
             txtFile.write("</tr>\n")
+
+        # LIGA PROTIV RAKA DRNIŠ TABLICA   
+        elif odabranaStranica["tablica"] == "ligaprotivrakadrnis.hr":
+            ext_upper = ext.upper()[1:]
+
+            privitak_poveznica = "<a style=" + '"' + "color: #dd4983; font-weight: 500; font-style: normal; text-transform: uppercase; letter-spacing: 1px; text-decoration: none;" + '"' + " href=" + '"' + (location + "/" + name_of_the_file) + '"'  + " target=" + '"' + "_blank" + '"' + "rel=" + '"' + "noopener noreferrer" + '"' + '"' + ">"
+
+            txtFile.write("<tr>\n")
+            txtFile.write("<td style=" + '"' + "text-align: center; border: solid 1px #dddddd; background-color: #fff; color: #000; width: 40px;" + '"' + ">" + str(broj_datoteke) + "." + "</td>\n")
+            txtFile.write("<td style=" + '"' + "text-align: left; padding: 3px 5px 3px 5px; border: solid 1px #dddddd; background-color: #fff; color: #666666;" + '"' + ">" + privitak_poveznica + naslov_dokumenta + "</a></td>\n")
+            txtFile.write("<td style=" + '"' + "text-align: center; background-color: #fff; border: solid 1px #dddddd; color: #666666; width: 80px;" + '"' + ">" + velicina + "</td>\n")
+            txtFile.write("<td style=" + '"' + "text-align: center; border: solid 1px #dddddd; background-color: #fff; color: #666666; width: 50px; vertical-align: middle;" + '"' + ">" + ext_upper + "</td>\n")
+            txtFile.write("</tr>\n")
+
 
  #New websites table
         elif odabranaStranica["tablica"] == "drnis.hr" or odabranaStranica["tablica"] == "eko-promina.hr" or odabranaStranica["tablica"] == "djecji-vrtic-marina.hr" or odabranaStranica["tablica"] == "dv-seget.hr" or odabranaStranica["tablica"] == "nkdosk.hr" or odabranaStranica["tablica"] == "narodna-knjiznica-drnis.hr":

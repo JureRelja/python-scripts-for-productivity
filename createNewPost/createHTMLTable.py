@@ -24,7 +24,7 @@ def createHTMLTable(files, year, folder, tempFile, selectedWebsite, categoryName
         tempFile.writelines("</tr>\n")
 
         #New websites table
-    elif selectedWebsite == "drnis.hr" or selectedWebsite == "eko-promina.hr" or selectedWebsite == "djecji-vrtic-marina.hr" or selectedWebsite == "dv-seget.hr" or selectedWebsite == "nkdosk.hr" or selectedWebsite == "narodna-knjiznica-drnis.hr":
+    elif selectedWebsite == "drnis.hr" or selectedWebsite == "dv-kostelice.hr" or selectedWebsite == "eko-promina.hr" or selectedWebsite == "djecji-vrtic-marina.hr" or selectedWebsite == "dv-seget.hr" or selectedWebsite == "nkdosk.hr" or selectedWebsite == "narodna-knjiznica-drnis.hr":
         tempFile.writelines("<table class=" + '"' + "privitak_table" + '"' + ">\n")
         tempFile.writelines("<tbody>\n")
         if selectedWebsite != "djecji-vrtic-marina.hr":
@@ -60,23 +60,7 @@ def createHTMLTable(files, year, folder, tempFile, selectedWebsite, categoryName
         tempFile.writelines("</tr>\n")
 
     # Vrtic Trogir tablica
-    elif selectedWebsite == 'vrtic-trogir.hr':
-        tempFile.writelines("<table style=" + '"' + "text-align: center; width: 100%; margin-bottom: 10px;" + '"' + ">\n")
-        tempFile.writelines("<tbody>\n")
-        tempFile.writelines("<tr>\n")
-        tempFile.writelines("<td style=" + '"' + "text-align: left; color: #444; font-weight: bold; font-size: 12px;" + '"' + " " + "colspan=" + '"' + ("4") + '"' + ">" + "DOKUMENTI ZA PREUZIMANJE:" + "</td>\n")
-        tempFile.writelines("</tr>\n")
-
-    # Gradski muzej Drniš tablica
-    elif selectedWebsite == 'gradski-muzej-drnis.hr':
-        tempFile.writelines("<table style=" + '"' + "text-align: center; width: 100%; margin-bottom: 10px;" + '"' + ">\n")
-        tempFile.writelines("<tbody>\n")
-        tempFile.writelines("<tr>\n")
-        tempFile.writelines("<td style=" + '"' + "text-align: left; color: #444; font-weight: bold; font-size: 12px;" + '"' + " " + "colspan=" + '"' + ("4") + '"' + ">" + "DOKUMENTI ZA PREUZIMANJE:" + "</td>\n")
-        tempFile.writelines("</tr>\n")
-
-    # Gradska čistoća Drniš tablica
-    elif selectedWebsite == 'gradskacistoca-drnis.hr':
+    elif selectedWebsite == 'vrtic-trogir.hr' or selectedWebsite == 'ligaprotivrakadrnis.hr' or selectedWebsite == 'gmd.hr' or selectedWebsite == 'gradskacistoca-drnis.hr' or selectedWebsite == 'jvp-drnis.hr' or selectedWebsite == 'komunalno-drustvo-biskupija.hr' or selectedWebsite == 'zena-drnis.hr' or selectedWebsite == "ljekarna-drnis.hr":
         tempFile.writelines("<table style=" + '"' + "text-align: center; width: 100%; margin-bottom: 10px;" + '"' + ">\n")
         tempFile.writelines("<tbody>\n")
         tempFile.writelines("<tr>\n")
@@ -98,28 +82,12 @@ def createHTMLTable(files, year, folder, tempFile, selectedWebsite, categoryName
         tempFile.writelines("<td style=" + '"' + "background-color: #2d7d9a; border: solid 1px #766f8e; color: #ffffff; font-weight: normal; font-size: 11px; width: 70px;" + '"' + ">" + "Preuzimanje" + "</td>\n")
         tempFile.writelines("</tr>\n")
 
-    # JVP Drniš tablica
-    elif selectedWebsite == 'jvp-drnis.hr':
-        tempFile.writelines("<table style=" + '"' + "text-align: center; width: 100%; margin-bottom: 10px;" + '"' + ">\n")
-        tempFile.writelines("<tbody>\n")
-        tempFile.writelines("<tr>\n")
-        tempFile.writelines("<td style=" + '"' + "text-align: left; color: #444; font-weight: bold; font-size: 12px;" + '"' + " " + "colspan=" + '"' + ("4") + '"' + ">" + "DOKUMENTI ZA PREUZIMANJE:" + "</td>\n")
-        tempFile.writelines("</tr>\n")
-
     # Općina Biskupija tablica
     elif selectedWebsite == 'biskupija.hr':
         tempFile.writelines("<table style=" + '"' + "text-align: center; width: 100%; margin-bottom: 10px;" + '"' + ">\n")
         tempFile.writelines("<tbody>\n")
         tempFile.writelines("<tr>\n")
         tempFile.writelines("<td style=" + '"' + "text-align: left; color: #666666; font-weight: bold; font-size: 12px;" + '"' + " " + "colspan=" + '"' + ("4") + '"' + ">" + "DOKUMENTI ZA PREUZIMANJE:" + "</td>\n")
-        tempFile.writelines("</tr>\n")
-
-    # Komunalno Društvo Biskupija tablica
-    elif selectedWebsite == 'komunalno-drustvo-biskupija.hr':
-        tempFile.writelines("<table style=" + '"' + "text-align: center; width: 100%; margin-bottom: 10px;" + '"' + ">\n")
-        tempFile.writelines("<tbody>\n")
-        tempFile.writelines("<tr>\n")
-        tempFile.writelines("<td style=" + '"' + "text-align: left; color: #444; font-weight: bold; font-size: 12px;" + '"' + " " + "colspan=" + '"' + ("4") + '"' + ">" + "DOKUMENTI ZA PREUZIMANJE:" + "</td>\n")
         tempFile.writelines("</tr>\n")
 
     # SS Ivana Meštrovića Drniš tablica 
@@ -162,24 +130,6 @@ def createHTMLTable(files, year, folder, tempFile, selectedWebsite, categoryName
         tempFile.writelines("<td style=" + '"' + "background-color: #f9f9f9; border: solid 1px #cccccc; color: #2a506d; font-weight: bold; font-size: 11px; width: 70px;" + '"' + ">" + "Preuzimanje" + "</td>\n")
         tempFile.writelines("</tr>\n")
 
-
-    # Žena Drniš tablica
-    elif selectedWebsite == 'zena-drnis.hr':
-        tempFile.writelines("<table style=" + '"' + "text-align: center; width: 100%; margin-bottom: 10px;" + '"' + ">\n")
-        tempFile.writelines("<tbody>\n")
-        tempFile.writelines("<tr>\n")
-        tempFile.writelines("<td style=" + '"' + "text-align: left; color: #444; font-weight: bold; font-size: 12px;" + '"' + " " + "colspan=" + '"' + ("4") + '"' + ">" + "DOKUMENTI ZA PREUZIMANJE:" + "</td>\n")
-        tempFile.writelines("</tr>\n")
-
-    # Ljekarna Drniš tablica
-    elif selectedWebsite == 'ljekarna-drnis.hr':
-        tempFile.writelines("<table style=" + '"' + "text-align: center; width: 100%; margin-bottom: 10px;" + '"' + ">\n")
-        tempFile.writelines("<tbody>\n")
-        tempFile.writelines("<tr>\n")
-        tempFile.writelines("<td style=" + '"' + "text-align: left; color: #444; font-weight: bold; font-size: 12px;" + '"' + " " + "colspan=" + '"' + ("4") + '"' + ">" + "DOKUMENTI ZA PREUZIMANJE:" + "</td>\n")
-        tempFile.writelines("</tr>\n")
-
-
     #Going through all files in the downlods folder and writing them to the table
     for every_file in files:
             
@@ -208,7 +158,7 @@ def createHTMLTable(files, year, folder, tempFile, selectedWebsite, categoryName
             tempFile.writelines("</tr>\n")
 
         #New websites table
-        elif selectedWebsite == "drnis.hr" or selectedWebsite == "eko-promina.hr" or selectedWebsite == "djecji-vrtic-marina.hr" or selectedWebsite == "dv-seget.hr" or selectedWebsite == "nkdosk.hr" or selectedWebsite == "narodna-knjiznica-drnis.hr":
+        elif selectedWebsite == "drnis.hr" or selectedWebsite == "dv-kostelice.hr" or selectedWebsite == "eko-promina.hr" or selectedWebsite == "djecji-vrtic-marina.hr" or selectedWebsite == "dv-seget.hr" or selectedWebsite == "nkdosk.hr" or selectedWebsite == "narodna-knjiznica-drnis.hr":
             ext_upper = every_file["ext"].upper()[1:]
 
             privitak_poveznica = "<td class=" + '"' + "privitak_td_poveznica" + '"' + "><a class=" + '"' + "privitak_a" + '"' + " href=" + '"' + (filesLocation) + '"'  + " target=" + '"' + "_blank" + '"' + " rel=" + '"' + "noopener noreferrer" + '"' + ">" + str(every_file["fileTitle"]) +  "</a></td>\n"
@@ -275,8 +225,22 @@ def createHTMLTable(files, year, folder, tempFile, selectedWebsite, categoryName
             tempFile.writelines("<td style=" + '"' + "text-align: center; border: solid 1px #dddddd; background-color: #fff; color: #666666; width: 50px; vertical-align: middle;" + '"' + ">" + ext_upper + "</td>\n")
             tempFile.writelines("</tr>\n")
 
+        
+        # Vrtic Trogir tablica
+        elif selectedWebsite == "ligaprotivrakadrnis.hr":
+            ext_upper = every_file["ext"].upper()[1:]
+
+            privitak_poveznica = "<a style=" + '"' + "color: #dd4983; text-decoration: none;" + '"' + " href=" + '"' + (filesLocation) + '"'  + " target=" + '"' + "_blank" + '"' + "rel=" + '"' + "noopener noreferrer" + '"' + '"' + ">"
+
+            tempFile.writelines("<tr>\n")
+            tempFile.writelines("<td style=" + '"' + "text-align: center; border: solid 1px #dddddd; background-color: #fff; color: #000; width: 40px;" + '"' + ">" + str(every_file["fileNumber"]) + "." + "</td>\n")
+            tempFile.writelines("<td style=" + '"' + "text-align: left; padding: 3px 5px 3px 5px; border: solid 1px #dddddd; background-color: #fff; color: #666666;" + '"' + ">" + privitak_poveznica + every_file["fileTitle"] + "</a></td>\n")
+            tempFile.writelines("<td style=" + '"' + "text-align: center; background-color: #fff; border: solid 1px #dddddd; color: #666666; width: 80px;" + '"' + ">" + every_file["fileSize"] + "</td>\n")
+            tempFile.writelines("<td style=" + '"' + "text-align: center; border: solid 1px #dddddd; background-color: #fff; color: #666666; width: 50px; vertical-align: middle;" + '"' + ">" + ext_upper + "</td>\n")
+            tempFile.writelines("</tr>\n")
+
         # Gradski muzej Drniš tablica
-        elif selectedWebsite == "gradski-muzej-drnis.hr":
+        elif selectedWebsite == "gmd.hr":
             ext_upper = every_file["ext"].upper()[1:]
 
             privitak_poveznica = "<a style=" + '"' + "color: #c81342; font-family: 'Raleway', Helvetica, Arial, sans-serif; font-weight: 500; font-style: normal; text-transform: uppercase; letter-spacing: 1px; text-decoration: none;" + '"' + " href=" + '"' + (filesLocation) + '"'  + " target=" + '"' + "_blank" + '"' + "rel=" + '"' + "noopener noreferrer" + '"' + '"' + ">"

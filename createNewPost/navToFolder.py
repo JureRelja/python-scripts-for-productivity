@@ -7,6 +7,7 @@ import string
 
 from clickAndNavigate import scrollAndClick
 from clickAndNavigate import click
+from clickAndNavigate import waitToClick
 
 adimnPath = "/administrator"
 
@@ -23,6 +24,13 @@ def navigateToNewFolder(browser, categoryName, subCategory, websiteGen, date):
         navigationElement = browser.find_element(By.LINK_TEXT, 'Media Manager')
 
     click(navigationElement)
+
+   # sleep(5)
+   # categoriesParent = browser.find_element(By.ID, "collapseFolder-")
+   # categories = categoriesParent.find_elements(By.XPATH, "*")
+   # for i in categories:
+   #     print(i.get_attribute("id") + "\n")
+   # sleep(100)
     
     #Navigating to the folder for gen 2 and 3 websites
     if websiteGen == 2 or websiteGen == 3 or websiteGen == 4:
@@ -47,6 +55,8 @@ def navigateToNewFolder(browser, categoryName, subCategory, websiteGen, date):
                 try: 
                     categoryFolder = browser.find_element(By.LINK_TEXT, subCategory) #Getting the cattegory folder
                     scrollAndClick(browser, categoryFolder)
+                    if i >= 7:
+                        browser.execute_script("window.scrollBy(0, 200)","")
                     #sleep(1)
                     break;
                 except NoSuchElementException:
@@ -193,19 +203,42 @@ def createFolderAndNavigate(browser, createFolderName, nagivateFolderName):
     browser.find_element(By.XPATH, "//button[text()=' Create New Folder']").click() #Clicking the create folder button
 
     folderNameInput = browser.find_element(By.ID, "foldername") #Getting the input field for the folder name
-    folderNameInput.send_keys(createFolderName) #Filling the input field with the current year
-    
-    browser.execute_script("arguments[0].scrollIntoView();", logo) #Scrolling to the details tag so that the create folder button is visible
 
-    browser.find_element(By.XPATH, "//button[text()=' Create Folder']").click() #Clicking the create folder button
+    for i in range(100):
+        try:
+            click(folderNameInput) #Filling the input field with the current year
+            break
+        except NoSuchElementException or ElementNotInteractableException:
+            sleep(0.1)    
+
+    for i in range(100):
+        try:
+            folderNameInput.send_keys(createFolderName) #Filling the input field with the current year
+            break
+        except NoSuchElementException or ElementNotInteractableException:
+            sleep(0.1)    
+
+    browser.execute_script("arguments[0].scrollIntoView();", logo) #Scrolling to the details tag so that the create folder button is visible
+    
+    for i in range(100):
+        try:
+
+            browser.find_element(By.XPATH, "//button[text()=' Create Folder']").click() #Clicking the create folder button
+            break
+        except NoSuchElementException or ElementNotInteractableException:
+            sleep(0.1)
 
     for i in range(100):
         try: 
             folder = browser.find_element(By.ID, nagivateFolderName).find_element(By.XPATH, "*") #Getting the newly created folder for the current year
             scrollAndClick(browser, folder)
+            if i >= 7:
+                browser.execute_script("window.scrollBy(0, 200)","")
             break;
         except NoSuchElementException or ElementNotInteractableException:
             sleep(0.5)
+
+      
 
     #sleep(0.5)
 

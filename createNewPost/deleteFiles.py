@@ -15,4 +15,7 @@ def deleteFiles(downloads, files):
 
         #Deleting Album folder in the downloads folder
         elif every_file == "Album":
-            shutil.rmtree(downloads + "\\" + every_file)
+            try:
+                shutil.rmtree(downloads + "\\" + every_file)
+            except FileNotFoundError:
+                continue

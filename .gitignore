@@ -1,2 +1,6 @@
 websitesData/docCategories.json
 websitesData/passwords.json
+.pyvenv.cfg
+__pycache__
+Lib
+Scripts

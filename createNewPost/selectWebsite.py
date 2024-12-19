@@ -3,11 +3,15 @@ import inquirer
 
 #User chooses the website
 
+websitesUrls = ['drnis.hr', "dv-kostelice.hr", 'djecji-vrtic-drnis.hr',  'ss-ivana-mestrovica-drnis.hr', 'ogsko.hr', 'zena-drnis.hr', 'vrtic-trogir.hr', 'djecji-vrtic-marina.hr', 'pucko-otvoreno-uciliste-drnis.hr', 'promina.hr', 'dv-seget.hr', "eko-promina.hr", 'narodna-knjiznica-drnis.hr', 'gmd.hr', 'biskupija.hr', 'ligaprotivrakadrnis.hr', "nkdosk.hr", 'kalun.hr', 'gradskacistoca-drnis.hr',  'jvp-drnis.hr',  'komunalno-drustvo-biskupija.hr',  'lag-krka.hr', 'silvijasunara.com', 'ljekarna-drnis.hr']
+
 def selectWebsite():
+    sortedWebsiteUrl = websitesUrls.copy()
+    sortedWebsiteUrl.sort()
     allWebsites = [
     inquirer.List('url',
                     message="Za koju stranicu želiš napraviti tablicu",
-                    choices=['drnis.hr', 'djecji-vrtic-drnis.hr',  'ss-ivana-mestrovica-drnis.hr', 'ogsko.hr', 'zena-drnis.hr', 'vrtic-trogir.hr', 'djecji-vrtic-marina.hr', 'pucko-otvoreno-uciliste-drnis.hr', 'promina.hr', 'dv-seget.hr', "eko-promina.hr", 'narodna-knjiznica-drnis.hr', 'gmd.hr', 'biskupija.hr', 'ligaprotivrakadrnis.hr', "nkdosk.hr", 'kalun.hr', 'gradskacistoca-drnis.hr',  'jvp-drnis.hr',  'komunalno-drustvo-biskupija.hr',  'lag-krka.hr', 'silvijasunara.com', 'ljekarna-drnis.hr'],
+                    choices=sortedWebsiteUrl,
                 ),
     ]
 
@@ -29,7 +33,7 @@ def selectWebsite():
     #User chooses the category
     for i in websites:
         if (i["url"] == selectedWebsite["url"]):
-            if (i["url"] == "ogsko.hr" or i["url"] == "ss-ivana-mestrovica-drnis.hr"):
+            if (i["url"] == "ogsko.hr" or i["url"] == "ss-ivana-mestrovica-drnis.hr" or i["url"] == "drnis.hr" or i["url"] == "gradskacistoca-drnis.hr"):
                 subSelectedCategory = i["subCategory"]
 
             websiteCategories = i["categories"]
@@ -49,7 +53,7 @@ def selectWebsite():
 
     selectedSubCategory = ""
 
-    if (selectedCategory["category"] == "08_DOKUMENTI") or (selectedCategory["category"] == "06_NASTAVA"):
+    if (selectedCategory["category"] == "08_DOKUMENTI") or (selectedCategory["category"] == "06_NASTAVA") or (selectedCategory["category"] == "11_SADRZAJ") or (selectedCategory["category"] == "02_DOKUMENTI"):
         subSelectedCategory = [
         inquirer.List('subCategory',
                         message="Odaberi podkategoriju mape u koju želiš spremiti slike",

@@ -7,10 +7,10 @@ from selenium.webdriver.common.by import By
 def scrollAndClick(browser, element):
     browser.execute_script("arguments[0].scrollIntoView();", element)
     browser.execute_script("window.scrollBy(0, -200)","")
-    click(element)
+    click(element, browser)
 
 
-def click(element):
+def click(element, browser=None):
     element_is_interactable = False
     startTime = datetime.datetime.now()
     counter = 1
@@ -18,6 +18,8 @@ def click(element):
     if element:
         while not element_is_interactable and not (datetime.datetime.now() - startTime > datetime.timedelta(seconds=100)):
             try:
+                if (datetime.datetime.now() - startTime > datetime.timedelta(seconds=15)):
+                    browser.execute_script("window.scrollBy(0, 200)","")
                 element.click()
                 element_is_interactable = True
             except (NoSuchElementException, ElementNotInteractableException, ElementClickInterceptedException) as e:

@@ -8,6 +8,7 @@ def rename(file):
     file = file.replace(" ", "_")
     file = file.replace(".", "_")
     file = file.replace("-", "_")
+    file = file.replace("–", "_")
     file = file.replace(",", "_")
     file = file.replace(";", "_")
     file = file.replace(":", "_")
@@ -21,12 +22,14 @@ def rename(file):
     file = file.replace("š", "s")
     file = file.replace("Ž", "Z")
     file = file.replace("ž", "z")
+    file = file.replace("_–", "_")
     file = file.replace("__", "_")
     file = file.replace("__", "_")
     file = file.replace("___", "_")
     file = file.replace('"', "")
     file = file.replace("(", "")
     file = file.replace(")", "")
+    file = file.replace("?", "")
     #file = file[0].upper() + file[1:]
         
     if file[-1] == "_":

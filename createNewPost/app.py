@@ -20,6 +20,7 @@ from deleteFiles import deleteFiles #Importing the function from deleteFiles.py
 from uploadFiles import uploadFiles #Importing the function from uploadImages.py
 from manipulateFiles import manipulateFiles #Importing the function from manipulateFiles.py
 
+
 downloads = str(Path.home() / "Downloads") #Path to the downloads folder
 imgFile = str(Path.home() / "Downloads/Album") #Path to the folder where the images will be stored
 
@@ -48,25 +49,34 @@ selectedWebsite = selectWebsite() #Selecting the website
 
 date = selectDateYear() #Getting the current month, day and year
 
-imageNum = resize(downloads, imgFile); #Resizing the images
+imageNum = resize(downloads, imgFile, websiteGen=selectedWebsite[4]); #Resizing the images
 
 filesLenght = len(files) #Getting the number of files in the downloads folder
 i = 0
 while i < filesLenght:
-    if files[i].endswith(".jpg") or files[i].endswith(".JPG") or files[i].endswith(".png") or files[i].endswith(".PNG") or files[i].endswith(".jpeg") or files[i].endswith(".JPEG") or files[i] == "Album" or files[i] == "desktop.ini": 
+    if files[i].endswith(".jpg") or files[i].endswith(".JPG") or files[i].endswith(".png") or files[i].endswith(".PNG") or files[i].endswith(".jpeg") or files[i].endswith(".JPEG") or files[i] == "Album" or files[i] == "desktop.ini" or files[i] == "Thumbs.db": 
         files.pop(i)
         i -= 1
         filesLenght -= 1
     i += 1
 
-filesExist = manipulateFiles(files=files, downloads=downloads, selectedWebsite=selectedWebsite[0]["url"]) #Manipulating the files
+filesExist = manipulateFiles(files=files, downloads=downloads, selectedWebsite=selectedWebsite[0]["url"], categoryName=selectedWebsite[1]["category"], postTitle=selectedWebsite[2]) #Manipulating the files
 
 tempFile.read()
 for file in files:
     filesForDeleting.append(file["fileName"])
 
 #Setting up the webdriver
-browser = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
+chrome_install = ChromeDriverManager().install()
+
+folder = os.path.dirname(chrome_install)
+folder = os.path.dirname(folder)
+chromedriver_path = os.path.join(folder, "chromedriver.exe")
+
+service = ChromeService(chromedriver_path)
+
+#Setting up the webdriver
+browser = webdriver.Chrome(service=service)
 browser.maximize_window()
 
 authentificate(selectedWebsite=selectedWebsite[0]["url"], browser=browser, websiteGen=selectedWebsite[4]) #Authentificating the user
@@ -75,9 +85,9 @@ folder = navigateToNewFolder(browser=browser, categoryName=selectedWebsite[1]["c
 
 uploadFiles(browser=browser, files=files, filesExist=filesExist, websiteGen=selectedWebsite[4], downloads=downloads) #Uploading the files
 
-imagesExist = uploadImages(browser=browser, imgFile=imgFile, downloads=downloads, imageNum=imageNum, folder=folder[0], websiteGen=selectedWebsite[4]) #Uploading the images
+imagesExist = uploadImages(browser=browser, imgFile=imgFile, downloads=downloads, imageNum=imageNum[0], secondAlbumType=imageNum[1], folder=folder[0], websiteGen=selectedWebsite[4]) #Uploading the images
 
-widgetID = createWidget(browser=browser, imageNum=imageNum, postTitle=selectedWebsite[2], folder=folder[1], category=selectedWebsite[1]["category"], albumExists=imagesExist[1], websiteGen=selectedWebsite[4], date=date) #Creating the widget
+widgetID = createWidget(browser=browser, imageNum=imageNum[0], secondAlbumType=imageNum[1], postTitle=selectedWebsite[2], folder=folder[1], category=selectedWebsite[1]["category"], albumExists=imagesExist[1], websiteGen=selectedWebsite[4], date=date) #Creating the widget
 
 tableExist = createHTMLTable(files=files, categoryName=selectedWebsite[1]["category"], subCategory=selectedWebsite[6], filesExist=filesExist, year=date["year"], folder=folder[1], tempFile=tempFile, selectedWebsite=selectedWebsite[0]["url"]) #Creating the HTML table
 tempFile.seek(0)

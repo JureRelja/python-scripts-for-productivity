@@ -9,7 +9,7 @@ from clickAndNavigate import scrollAndClick
 from clickAndNavigate import waitToClick
 from rename import rename
 
-def createWidget(browser, imageNum, postTitle, folder, category, albumExists, websiteGen, date):
+def createWidget(browser, imageNum, secondAlbumType, postTitle, folder, category, albumExists, websiteGen, date):
     if (albumExists == False):
         return
     
@@ -50,7 +50,7 @@ def createWidget(browser, imageNum, postTitle, folder, category, albumExists, we
         click(galleryBtn)
 
     #Two albums and two widgets
-    if (imageNum == "two_albums"):
+    if (secondAlbumType == "two_albums"):
         if websiteGen == 3:
             newWidgetID = newWidgetGen3(browser, postTitle, folder, "jedna_slika", category, date["year"])
 
@@ -64,24 +64,19 @@ def createWidget(browser, imageNum, postTitle, folder, category, albumExists, we
                         sleep(0.1)
                         continue
 
-            elif websiteGen == 4:
-                for i in range(0, 100):
-                    try: 
-                        widgetNum = browser.find_elements(By.CLASS_NAME, 'uk-visible-toggle')
-                        if (len(widgetNum) > 0):
-                            break
-                        else:
-                            sleep(0.1)
-                            continue
-                    except NoSuchElementException or ElementNotInteractableException:
-                        sleep(0.1)
-
             #creating second album
-            newWidgetID2 = newWidgetGen3(browser, postTitle + "2", folder, "jedna_slika", category, date["year"])
+            newWidgetID2 = newWidgetGen3(browser, postTitle + "2", folder, "jedna_slika", category, date["year"], "album2")
         elif websiteGen == 2:
             newWidgetID = newWidgetGen2(browser, postTitle, folder, "jedna_slika", category, date["year"], "album")
+            #creating second album
+            newWidgetID2 = newWidgetGen2(browser, postTitle + "2", folder, "jedna_slika", category, date["year"], "album2")
 
-            #waiting for widgets to load to create second album
+    #One image album on top and gallery on the bottom
+    elif (secondAlbumType == "main_img_album_and_galery"):
+        if websiteGen == 3:
+            newWidgetID = newWidgetGen3(browser, postTitle, folder, "jedna_slika", category, date["year"])
+
+             #waiting for widgets to load to create second album
             if websiteGen == 3:
                 for i in range(0, 100):
                     widgetNum = browser.find_elements(By.CLASS_NAME, 'uk-visible-hover-inline')
@@ -91,19 +86,12 @@ def createWidget(browser, imageNum, postTitle, folder, category, albumExists, we
                         sleep(0.1)
                         continue
 
-            elif websiteGen == 4:
-                for i in range(0, 100):
-                    try: 
-                        widgetNum = browser.find_elements(By.CLASS_NAME, 'uk-visible-toggle')
-                        if (len(widgetNum) > 0):
-                            break
-                        else:
-                            sleep(0.1)
-                            continue
-                    except NoSuchElementException or ElementNotInteractableException:
-                        sleep(0.1)
             #creating second album
-            newWidgetID2 = newWidgetGen2(browser, postTitle + "2", folder, "jedna_slika", category, date["year"], "album2")
+            newWidgetID2 = newWidgetGen3(browser, postTitle + "2", folder, "album", category, date["year"], "album2")
+        elif websiteGen == 2:
+            newWidgetID = newWidgetGen2(browser, postTitle, folder, "jedna_slika", category, date["year"], "album")
+            #creating second album
+            newWidgetID2 = newWidgetGen2(browser, postTitle + "2", folder, "album", category, date["year"], "album2")
 
     #One image widget
     elif (imageNum == 1):
@@ -181,9 +169,15 @@ def newWidgetGen2(browser, postTitle, folder, widgetType, category, year, albumN
             newWidgetNameInput = browser.find_element(By.CLASS_NAME, "name") #Finding the widget name input
             newWidgetNameInput.clear() #Clearing the widget name input
 
-            newWidgetName = str(year) + "_" + folder + "_" + postTitle + "_" + widgetType #Creating the new widget name
+            postTitle = rename(postTitle)
+       
+            splitedPostTitle = postTitle.split("_")[:8]
+            splitedPostTitleWithPrefix = ["_" + word for word in splitedPostTitle]
+
+            newWidgetName = str(year) + "_" + folder + "_" + "".join(splitedPostTitleWithPrefix) + "_" + widgetType #Creating the new widget name
+   
             newWidgetName = rename(newWidgetName).lower() #Renaming the widget name
-            newWidgetNameInput.send_keys(rename(newWidgetName).lower()) #Sending the new widget name
+            newWidgetNameInput.send_keys(newWidgetName) #Sending the new widget name
 
             deletePrevImages = browser.find_element(By.CLASS_NAME, "deletable") #Finding the delete previous images checkbox
             deletePrevImages.click() #Clicking on the delete previous images checkbox
@@ -266,7 +260,7 @@ def newWidgetGen2(browser, postTitle, folder, widgetType, category, year, albumN
             return newWidgetID       
 
 #Creating a new widget for gen3 websites
-def newWidgetGen3(browser, postTitle, folder, widgetType, category, year):
+def newWidgetGen3(browser, postTitle, folder, widgetType, category, year, albumName=None):
     newWidgetID = ""
 
     allWidgets = browser.find_elements(By.CLASS_NAME, 'uk-visible-hover-inline')
@@ -274,26 +268,22 @@ def newWidgetGen3(browser, postTitle, folder, widgetType, category, year):
     a = ActionChains(browser)
 
     for widget in allWidgets:
-        #scrolling to a widget
-        browser.execute_script("arguments[0].scrollIntoView();", widget)
-        browser.execute_script("window.scrollBy(0, -200)","")
-    
         widgetElement = widget.find_element(By.XPATH, "*").find_element(By.XPATH, "*")
+
+        #browser.execute_script("arguments[0].scrollIntoView();", widget) #Scrolling to the element
+        #browser.execute_script("window.scrollBy(0, 200)") #Scrolling up a bit
 
         #Finding the first existing widget that ends the same as the widgetType and copying it
         if (widgetElement.text.endswith(widgetType)):
-
+            browser.execute_script("arguments[0].scrollIntoView();", widgetElement) #Scrolling to the element
+            browser.execute_script("window.scrollBy(0, -200)","") #Scrolling up a bit
+            
             copyIcon = widget.find_elements(By.XPATH, "*")[-1].find_element(By.XPATH, "*") #Finding the copy icon
 
-            a.move_to_element(copyIcon) #Hovering over the copy icon
+            a.move_to_element(widgetElement) #Hovering over the copy icon
             a.perform() #Performing the hover action
-            for i in range(0, 100):
-                try:
-                    copyIcon.click()       #Clicking on the copy icon
-                    break
-                except ElementNotInteractableException or NoSuchElementException:
-                    sleep(0.1)
-                    continue
+
+            copyIcon.click()     #Clicking on the copy icon
 
             #Waiting for the new widget to appear
             for i in range(0, 100):
@@ -307,20 +297,23 @@ def newWidgetGen3(browser, postTitle, folder, widgetType, category, year):
             newWidget = widget.find_element(By.XPATH, "following-sibling::*[1]") #Finding the new widget
 
             newWidgetID = newWidget.find_elements(By.XPATH, "*")[-2].text #Getting the new widget ID
-
-            #Scroling to a new widget
-            browser.execute_script("arguments[0].scrollIntoView();", newWidget)
-            browser.execute_script("window.scrollBy(0, -200)","")
             
             newWidget.find_element(By.XPATH, "*").find_element(By.XPATH, "*").click() #Clicking on the new widget
+            #sleep(50)
 
             newWidgetNameInput = browser.find_element(By.CLASS_NAME, "uk-form-large") #Finding the widget name input
 
             newWidgetNameInput.clear() #Clearing the widget name input
 
-            newWidgetName = str(year) + "_" + folder + "_" + postTitle + "_" + widgetType #Creating the new widget name
+            postTitle = rename(postTitle)
 
-            newWidgetNameInput.send_keys(rename(newWidgetName).lower()) #Sending the new widget name to the widget name input
+            splitedPostTitle = postTitle.split("_")[:8]
+            splitedPostTitleWithPrefix = ["_" + word for word in splitedPostTitle]
+
+            newWidgetName = str(year) + "_" + folder + "_" + "".join(splitedPostTitleWithPrefix) + "_" + widgetType #Creating the new widget name
+ 
+            newWidgetName = rename(newWidgetName).lower() #Renaming the widget name
+            newWidgetNameInput.send_keys(newWidgetName) #Sending the new widget name
 
             folderPathInput = ""
             for i in range(0, 100):
@@ -328,12 +321,17 @@ def newWidgetGen3(browser, postTitle, folder, widgetType, category, year):
                     folderPathInput = browser.find_element(By.ID, "wk-path") #Finding the folder path input
                     break
                 except NoSuchElementException:
-                    sleep(0.05)
+                    sleep(0.5)
                     continue
 
             folderPathInput.clear() #Clearing the folder path input
 
-            newFolderPath = "images" + "/" + category + "/" + str(year) + "/" + folder + "/" + "album" #Creating the new folder path
+            album = "album"
+
+            if albumName:
+                album = albumName
+
+            newFolderPath = "images" + "/" + category + "/" + str(year) + "/" + folder + "/" +  album #Creating the new folder path
 
             folderPathInput.send_keys(newFolderPath) #Sending the new folder path to the folder path input
 
@@ -363,7 +361,7 @@ def newWidgetGen4(browser, postTitle, folder, widgetType, category, year):
 
             copyIcon = widget.find_elements(By.XPATH, "*")[-1].find_element(By.XPATH, "*").find_element(By.XPATH, "*") #Finding the copy icon
 
-            a.move_to_element(copyIcon) #Hovering over the copy icon
+            a.move_to_element(widgetElement) #Hovering over the copy icon
             a.perform() #Performing the hover action
             copyIcon.click()       #Clicking on the copy icon
 
@@ -386,9 +384,15 @@ def newWidgetGen4(browser, postTitle, folder, widgetType, category, year):
 
             newWidgetNameInput.clear() #Clearing the widget name input
 
-            newWidgetName = str(year) + "_" + folder + "_" + postTitle + "_" + widgetType #Creating the new widget name
+            postTitle = rename(postTitle)
 
-            newWidgetNameInput.send_keys(rename(newWidgetName).lower()) #Sending the new widget name to the widget name input
+            splitedPostTitle = postTitle.split("_")[:8]
+            splitedPostTitleWithPrefix = ["_" + word for word in splitedPostTitle]
+
+            newWidgetName = str(year) + "_" + folder + "_" + "".join(splitedPostTitleWithPrefix) + "_" + widgetType #Creating the new widget name
+
+            newWidgetName = rename(newWidgetName).lower() #Renaming the widget name
+            newWidgetNameInput.send_keys(newWidgetName) #Sending the new widget name
 
             folderPathInput = ""
             for i in range(0, 100):
@@ -412,5 +416,3 @@ def newWidgetGen4(browser, postTitle, folder, widgetType, category, year):
         else:
             continue
             
-    
-    
